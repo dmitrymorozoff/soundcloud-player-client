@@ -1,0 +1,10 @@
+.layer {
+    display: none;
+    width: 100%;
+    min-height: 550px;
+    height: auto;
+}
+
+.layer.active {
+    display: block;
+}
