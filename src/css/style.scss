@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 * {
     padding: 0;
     margin: 0;
 }
 
 body {
-    background: #f1f5f8;
+    background: #fff;
     font-family: 'Roboto', sans-serif;
     height: 100vh;
 }

@@ -2,24 +2,20 @@ import Layout from "./Layout";
 import Navigation from "./Navigation";
 import Header from "./Header";
 const tabs = [{
-        title: "Stream",
-        link: "stream"
-    },
-    {
         title: "Discover",
-        link: "discover"
+        link: "discoverx"
     },
     {
-        title: "Top List",
-        link: "toplist"
+        title: "Trending",
+        link: "trenfing"
     },
     {
-        title: "My Tracks",
+        title: "New Releases",
+        link: "new"
+    },
+    {
+        title: "My Movies",
         link: "mytracks"
-    },
-    {
-        title: "Home",
-        link: "home"
     }
 ];
 
@@ -32,7 +28,7 @@ export default class Player {
             activeTab: startActiveLayer
         });
         this.header = new Header(this.container, {
-            src: "./img/SoundCloud1.png"
+            src: "./img/ArcLight_logo-2.png"
         });
 
         this.layout = new Layout(this.container, {

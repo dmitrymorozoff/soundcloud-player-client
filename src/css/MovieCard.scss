@@ -1,0 +1,114 @@
+$main-text-color: #131313;
+$text-color: #9d9d9d;
+.movie-card-part {
+    display: flex;
+    width: 400px;
+    height: 240px;
+    margin: 50px 20px;
+    background: #fff;
+    flex-wrap: wrap;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.poster-wrap-part {
+    padding: 0;
+    width: 50%;
+    margin-left: 25px;
+}
+
+.poster-part {
+    width: 100%;
+    box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+}
+
+.movie-card-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.movie-card-title-part {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: $main-text-color;
+}
+
+.movie-card-content-part {
+    display: flex;
+    color: $text-color;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+}
+
+.movie-card-rate-part {
+    font-family: 'Raleway', sans-serif;
+    position: absolute;
+    top: 65%;
+    left: 35%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 62px;
+    text-shadow: 0 0 .2em rgba(255, 255, 255, .05), 0 0 .2em rgba(0, 0, 0, .05), 0 .3em .2em rgba(0, 0, 0, .05);
+}
+
+.movie-card-full {
+    width: 220px;
+    margin: 15px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.poster-wrap-full {
+    padding: 0;
+    width: 100%;
+}
+
+.poster-full {
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.21);
+}
+
+.movie-card-title-full {
+    margin-top: 15px;
+    color: $main-text-color;
+    text-align: center;
+    font-size: 20px;
+}
+
+.movie-card-year-full {
+    display: none;
+}
+
+.movie-card-desc-full {
+    text-align: center;
+    height: 45px;
+    line-height: 26px;
+    margin: 20px 0;
+    font-size: 16px;
+    overflow: hidden;
+    color: $text-color;
+}
+
+.movie-card-rate-full {
+    background: lawngreen;
+    font-family: 'Raleway', sans-serif;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    top: 62%;
+    left: 84%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 28px;
+    text-shadow: 0 0 .2em rgba(255, 255, 255, .05), 0 0 .2em rgba(0, 0, 0, .05), 0 .3em .2em rgba(0, 0, 0, .05);
+}

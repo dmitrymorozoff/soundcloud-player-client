@@ -7,10 +7,6 @@ export default class Header {
         this.props = props;
     }
     create() {
-        const header = createElement({
-            tag: "div",
-            classList: ["header"]
-        });
         const logoWrap = createElement({
             tag: "div",
             classList: ["header-logo-wrap"]
@@ -23,12 +19,22 @@ export default class Header {
             tag: "img",
             classList: ["logo"]
         });
-
         logo.src = this.props.src;
-        logoTitle.innerHTML = "SoundCloud";
+        logoTitle.innerHTML = "The Movie DB";
         logoWrap.appendChild(logo);
-        header.appendChild(logoWrap);
-        header.appendChild(logoTitle);
+        const search = createElement({
+            tag: "input",
+            classList: ["search"]
+        });
+        search.type = "text";
+        const header = createElement({
+                tag: "div",
+                classList: ["header"]
+            },
+            logoWrap,
+            logoTitle,
+            search
+        );
         this.container.appendChild(header);
     }
 }

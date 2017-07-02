@@ -1,0 +1,30 @@
+$main-text-color: #131313;
+$scrollbar-border-color: lighten($main-text-color, 80%);
+.scrollbar {
+    position: absolute;
+    display: flex;
+    width: 10000px;
+    height: 80px;
+    margin-top: 55px;
+    cursor: w-resize;
+    background: rgba(255, 255, 255, 0.1);
+    color: $main-text-color;
+    font-size: 20px;
+    border-bottom: 1px solid $scrollbar-border-color;
+}
+
+.scrollbar-wrap {
+    width: 100%;
+    position: relative;
+    top: 60%;
+}
+
+.scrollbar-item {
+    line-height: 80px;
+    text-align: center;
+    width: 435px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

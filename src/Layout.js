@@ -1,4 +1,6 @@
 import { createElement } from "./Helpers";
+import TopMovies from "./TopMovies";
+import BestMovies from "./BestMovies";
 import "./css/Layout.scss";
 
 export default class Layout {
@@ -24,7 +26,14 @@ export default class Layout {
         }
         this.activeLayer = this.layers[this.activeLayerIndex];
         this.activeLayer.classList.add("active");
+        const topMovies = new TopMovies(this.layers[0]);
+        topMovies.create();
+        topMovies.loadingMovies();
+        const bestMovies = new BestMovies(this.layers[0]);
+        bestMovies.create();
+        bestMovies.loadingMovies();
     }
+
     toggleLayer(newActiveId) {
         this.activeLayer.classList.toggle("active");
         this.activeLayerIndex = newActiveId;
