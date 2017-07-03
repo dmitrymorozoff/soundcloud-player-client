@@ -1,26 +1,50 @@
 @mixin gradient-vertical($start_color, $end_color, $start_position, $end_position) {
-    background: $start_color;
-    background: -moz-linear-gradient( top, $start_color $start_position, $end_color $end_position);
-    background: -webkit-gradient( linear, left top, left bottom, color-stop($start_position, $start_color), color-stop($end_position, $end_color));
-    background: -webkit-linear-gradient( top, $start_color $start_position, $end_color $end_position);
-    background: -o-linear-gradient( top, $start_color $start_position, $end_color $end_position);
-    background: -ms-linear-gradient( top, $start_color $start_position, $end_color $end_position);
-    background: linear-gradient( to bottom, $start_color $start_position, $end_color $end_position);
+  background: $start_color;
+  background: -moz-linear-gradient(
+    top,
+    $start_color $start_position,
+    $end_color $end_position
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop($start_position, $start_color),
+    color-stop($end_position, $end_color)
+  );
+  background: -webkit-linear-gradient(
+    top,
+    $start_color $start_position,
+    $end_color $end_position
+  );
+  background: -o-linear-gradient(
+    top,
+    $start_color $start_position,
+    $end_color $end_position
+  );
+  background: -ms-linear-gradient(
+    top,
+    $start_color $start_position,
+    $end_color $end_position
+  );
+  background: linear-gradient(
+    to bottom,
+    $start_color $start_position,
+    $end_color $end_position
+  );
 }
-
 .top-movies-wrap {
-    width: 100%;
-    padding-top: 40px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    height: 450px;
-    @include gradient-vertical(#4770F7, #fff, 30%, 30%);
+  width: 100%;
+  padding-top: 50px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 450px;
+  @include gradient-vertical(#0d1016, #0d1016, 42%, 42%);
 }
-
 .top-movies {
-    position: absolute;
-    width: 10000px;
-    display: flex;
+  position: absolute;
+  width: 10000px;
+  display: flex;
 }
