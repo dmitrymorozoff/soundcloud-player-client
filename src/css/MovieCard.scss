@@ -1,6 +1,7 @@
 $main-text-color: #fff;
 $text-color: #9d9d9d;
-$orange: #f2bc13;
+$orange: #f73d28;
+$green: #3ab059;
 .movie-card-part {
   display: flex;
   width: 400px;
@@ -63,18 +64,60 @@ $orange: #f2bc13;
   margin: 15px;
   height: 480px;
   display: flex;
+  transition: 3s;
   flex-direction: column;
   position: relative;
+  :hover {
+    .poster-full {
+      transform: scale(1.7);
+    }
+  }
 }
 
 .poster-wrap-full {
   padding: 0;
   width: 100%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    .movie-card-btn-full {
+      top: 75%;
+    }
+    &:after {
+      clip-path: circle(120% at 50% 50%);
+    }
+    &:before {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.1) 90%
+      );
+    }
+  }
+
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    display: block;
+    z-index: 3;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(78, 117, 220, 0.2) 100%
+    );
+    clip-path: circle(0% at 50% 50%);
+    transition: .8s;
+  }
 }
 
 .poster-full {
   width: 100%;
-  cursor: pointer;
+  transition: .8s;
   box-shadow: 0 15px 30px 1px rgba(0, 0, 0, 0.31);
 }
 
@@ -112,6 +155,23 @@ $orange: #f2bc13;
   color: #fff;
   font-weight: bold;
   font-size: 24px;
+  z-index: 5;
   text-shadow: 0 0 .2em rgba(255, 255, 255, .05), 0 0 .2em rgba(0, 0, 0, .05),
     0 .3em .2em rgba(0, 0, 0, .05);
+}
+
+.movie-card-btn-full {
+  transition: .4s;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  margin-left: -75px;
+  cursor: pointer;
+  z-index: 5;
+  width: 150px;
+  height: 40px;
+  background: $green;
+  border: none;
+  color: #fff;
+  font-size: 16px;
 }

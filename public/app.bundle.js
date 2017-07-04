@@ -129,7 +129,7 @@ exports.createElement = createElement;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -137,39 +137,47 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var MoviesHelper = function () {
-    function MoviesHelper() {
-        _classCallCheck(this, MoviesHelper);
+  function MoviesHelper() {
+    _classCallCheck(this, MoviesHelper);
 
-        this.apiKey = "?api_key=191afa11366f646301a60a16fee09d34";
-        this.url = "https://api.themoviedb.org/3/discover/movie";
-        this.searchurl = "https://api.themoviedb.org/3/search/movie" + this.apikey + "&query=z";
+    this.apiKey = "?api_key=191afa11366f646301a60a16fee09d34";
+    this.url = "https://api.themoviedb.org/3/";
+  }
+
+  _createClass(MoviesHelper, [{
+    key: "getApiKey",
+    value: function getApiKey() {
+      return this.apiKey;
     }
+  }, {
+    key: "getUrl",
+    value: function getUrl() {
+      return this.url;
+    }
+  }, {
+    key: "getData",
+    value: function getData(url) {
+      var fullUrl = url;
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", fullUrl);
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            var json = JSON.parse(xhr.response);
+            resolve(json);
+          } else {
+            reject(xhr.statusText);
+          }
+        };
+        xhr.onerror = function (error) {
+          reject(error);
+        };
+        xhr.send();
+      });
+    }
+  }]);
 
-    _createClass(MoviesHelper, [{
-        key: "getData",
-        value: function getData(search) {
-            var fullUrl = this.url + this.apiKey + search;
-            return new Promise(function (resolve, reject) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", fullUrl);
-                xhr.onload = function () {
-                    if (xhr.status === 200) {
-                        var json = JSON.parse(xhr.response);
-                        console.log(json);
-                        resolve(json.results);
-                    } else {
-                        reject(xhr.statusText);
-                    }
-                };
-                xhr.onerror = function (error) {
-                    reject(error);
-                };
-                xhr.send();
-            });
-        }
-    }]);
-
-    return MoviesHelper;
+  return MoviesHelper;
 }();
 
 exports.default = MoviesHelper;
@@ -182,7 +190,7 @@ exports.default = MoviesHelper;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -194,72 +202,79 @@ __webpack_require__(7);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var MovieCard = function () {
-    function MovieCard(container, props) {
-        _classCallCheck(this, MovieCard);
+  function MovieCard(container, props) {
+    _classCallCheck(this, MovieCard);
 
-        this.container = container;
-        this.card = null;
-        this.id = props.id;
-        this.title = props.original_title;
-        this.rate = props.vote_average;
-        this.year = props.release_date;
-        this.desc = props.overview;
-        this.poster = "https://image.tmdb.org/t/p/w500" + props.poster_path;
+    this.container = container;
+    this.card = null;
+    this.id = props.id;
+    this.title = props.original_title;
+    this.rate = props.vote_average;
+    this.year = props.release_date;
+    this.desc = props.overview;
+    this.posterPath = "https://image.tmdb.org/t/p/w500" + props.poster_path;
+    this.poster = null;
+  }
+
+  _createClass(MovieCard, [{
+    key: "create",
+    value: function create() {
+      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "part";
+
+      var postfix = type === "part" ? "part" : "full";
+
+      var cardPoster = (0, _Helpers.createElement)({
+        tag: "img",
+        classList: ["poster-" + postfix]
+      });
+      cardPoster.src = this.posterPath;
+      this.poster = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["poster-wrap-" + postfix]
+      }, cardPoster);
+      var cardTitle = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["movie-card-title-" + postfix]
+      });
+      cardTitle.innerHTML = this.title;
+      var cardRate = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["movie-card-rate-" + postfix]
+      });
+      cardRate.innerHTML = type === "part" ? this.rate + "/10" : "" + this.rate;
+      var cardYear = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["movie-card-year-" + postfix]
+      });
+      cardYear.innerHTML = this.year;
+      var cardContnt = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["movie-card-content-" + postfix]
+      }, cardTitle, cardYear);
+      var btnAddToBookmars = (0, _Helpers.createElement)({
+        tag: "button",
+        classList: ["movie-card-btn-" + postfix]
+      });
+      btnAddToBookmars.innerHTML = "Add Bookmark";
+      if (type === "full") {
+        this.poster.appendChild(btnAddToBookmars);
+        var cardDesc = (0, _Helpers.createElement)({
+          tag: "div",
+          classList: ["movie-card-desc-" + postfix]
+        });
+        cardDesc.innerHTML = this.desc;
+        cardContnt.appendChild(cardDesc);
+      }
+      this.card = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["movie-card-" + postfix],
+        "data-id": this.id
+      }, this.poster, cardContnt, cardRate);
+      this.container.appendChild(this.card);
     }
+  }]);
 
-    _createClass(MovieCard, [{
-        key: "create",
-        value: function create() {
-            var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "part";
-
-            var postfix = type === "part" ? "part" : "full";
-
-            var cardPoster = (0, _Helpers.createElement)({
-                tag: "img",
-                classList: ["poster-" + postfix]
-            });
-            cardPoster.src = this.poster;
-            var cardPosterWrapper = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["poster-wrap-" + postfix]
-            }, cardPoster);
-            var cardTitle = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["movie-card-title-" + postfix]
-            });
-            cardTitle.innerHTML = this.title;
-            var cardRate = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["movie-card-rate-" + postfix]
-            });
-            cardRate.innerHTML = type === "part" ? this.rate + "/10" : "" + this.rate;
-            var cardYear = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["movie-card-year-" + postfix]
-            });
-            cardYear.innerHTML = this.year;
-            var cardContnt = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["movie-card-content-" + postfix]
-            }, cardTitle, cardYear);
-            if (type === "full") {
-                var cardDesc = (0, _Helpers.createElement)({
-                    tag: "div",
-                    classList: ["movie-card-desc-" + postfix]
-                });
-                cardDesc.innerHTML = this.desc;
-                cardContnt.appendChild(cardDesc);
-            }
-            this.card = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["movie-card-" + postfix],
-                "data-id": this.id
-            }, cardPosterWrapper, cardContnt, cardRate);
-            this.container.appendChild(this.card);
-        }
-    }]);
-
-    return MovieCard;
+  return MovieCard;
 }();
 
 exports.default = MovieCard;
@@ -504,7 +519,7 @@ exports.default = Layout;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -530,76 +545,76 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var TopMovies = function () {
-    function TopMovies(container) {
-        _classCallCheck(this, TopMovies);
+  function TopMovies(container) {
+    _classCallCheck(this, TopMovies);
 
-        this.container = container;
-        this.movies = [];
-        this.scrollBarLinks = [];
-        this.topMoviesLayer = null;
-        this.scroll = null;
-        this.topMoviesUrl = "&sort_by=popularity.desc";
+    this.container = container;
+    this.movies = [];
+    this.scrollBarLinks = [];
+    this.topMoviesLayer = null;
+    this.scroll = null;
+    this.topMoviesUrl = "&sort_by=popularity.desc";
+  }
+
+  _createClass(TopMovies, [{
+    key: "create",
+    value: function create() {
+      this.topMoviesLayer = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["top-movies"]
+      });
+      var topMoviesLayerWrap = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["top-movies-wrap"]
+      }, this.topMoviesLayer);
+      this.scroll = new _Scrollbar2.default(topMoviesLayerWrap, this.scrollBarLinks, this.topMoviesLayer);
+      this.scroll.create();
+      this.container.appendChild(topMoviesLayerWrap);
     }
+  }, {
+    key: "loadingMovies",
+    value: function loadingMovies() {
+      var _this = this;
 
-    _createClass(TopMovies, [{
-        key: "create",
-        value: function create() {
-            this.topMoviesLayer = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["top-movies"]
-            });
-            var topMoviesLayerWrap = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["top-movies-wrap"]
-            }, this.topMoviesLayer);
-            this.scroll = new _Scrollbar2.default(topMoviesLayerWrap, this.scrollBarLinks, this.topMoviesLayer);
-            this.scroll.create();
-            this.container.appendChild(topMoviesLayerWrap);
+      var movieHelper = new _MoviesHelper2.default();
+      var movieItem = null;
+      movieHelper.getData(movieHelper.getUrl() + "discover/movie" + movieHelper.getApiKey() + this.topMoviesUrl).then(function (data) {
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          for (var _iterator = data.results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var movie = _step.value;
+
+            movieItem = new _MovieCard2.default(_this.topMoviesLayer, movie);
+            _this.scrollBarLinks.push(movie.original_title);
+            _this.movies.push(movieItem);
+            movieItem.create();
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
         }
-    }, {
-        key: "loadingMovies",
-        value: function loadingMovies() {
-            var _this = this;
 
-            var movieHelper = new _MoviesHelper2.default();
-            var movieItem = null;
-            movieHelper.getData(this.topMoviesUrl).then(function (data) {
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
+        _this.scroll.addLinks(_this.scrollBarLinks);
+      }).catch(function (e) {
+        console.log(e);
+      });
+    }
+  }]);
 
-                try {
-                    for (var _iterator = data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var movie = _step.value;
-
-                        movieItem = new _MovieCard2.default(_this.topMoviesLayer, movie);
-                        _this.scrollBarLinks.push(movie.original_title);
-                        _this.movies.push(movieItem);
-                        movieItem.create();
-                    }
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
-                    }
-                }
-
-                _this.scroll.addLinks(_this.scrollBarLinks);
-            }).catch(function (e) {
-                console.log(e);
-            });
-        }
-    }]);
-
-    return TopMovies;
+  return TopMovies;
 }();
 
 exports.default = TopMovies;
@@ -735,7 +750,7 @@ exports.default = Scrollbar;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -750,6 +765,10 @@ var _MovieCard = __webpack_require__(2);
 
 var _MovieCard2 = _interopRequireDefault(_MovieCard);
 
+var _Modal = __webpack_require__(30);
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
 __webpack_require__(12);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -757,68 +776,106 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var BestMovies = function () {
-    function BestMovies(container) {
-        _classCallCheck(this, BestMovies);
+  function BestMovies(container) {
+    _classCallCheck(this, BestMovies);
 
-        this.container = container;
-        this.movies = [];
-        this.bestMoviesLayer = null;
-        this.bestMoviesUrl = "&primary_release_date.gte=2016-11-15&primary_release_date.lte=2017-2-22";
+    this.container = container;
+    this.movies = [];
+    this.bestMoviesLayer = null;
+    this.bestMoviesUrl = "&primary_release_date.gte=2016-11-15&primary_release_date.lte=2017-2-22";
+    this.modalWithInfo = null;
+    this.modal = null;
+  }
+
+  _createClass(BestMovies, [{
+    key: "create",
+    value: function create() {
+      var _this = this;
+
+      this.bestMoviesLayer = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["best-movies"]
+      });
+      var bestMoviesLayerWrap = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["best-movies-wrap"]
+      }, this.bestMoviesLayer);
+      this.container.appendChild(bestMoviesLayerWrap);
+      this.modal = new _Modal2.default(this.bestMoviesLayer, "best-movies");
+      this.modal.create();
+      document.addEventListener("keydown", function (event) {
+        if (event.keyCode == 27) {
+          _this.modal.hide();
+        }
+      });
     }
+  }, {
+    key: "loadingMovies",
+    value: function loadingMovies() {
+      var _this2 = this;
 
-    _createClass(BestMovies, [{
-        key: "create",
-        value: function create() {
-            this.bestMoviesLayer = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["best-movies"]
-            });
-            var bestMoviesLayerWrap = (0, _Helpers.createElement)({
-                tag: "div",
-                classList: ["best-movies-wrap"]
-            }, this.bestMoviesLayer);
-            this.container.appendChild(bestMoviesLayerWrap);
+      var movieHelper = new _MoviesHelper2.default();
+      var movieItem = null;
+      movieHelper.getData(movieHelper.getUrl() + "discover/movie" + movieHelper.getApiKey() + this.bestMoviesUrl).then(function (data) {
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          for (var _iterator = data.results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var movie = _step.value;
+
+            movieItem = new _MovieCard2.default(_this2.bestMoviesLayer, movie);
+            movieItem.create("full");
+            movieItem.poster.addEventListener("click", _this2.handleClickOnMovieCard.bind(_this2));
+            _this2.movies.push(movieItem);
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
         }
-    }, {
-        key: "loadingMovies",
-        value: function loadingMovies() {
-            var _this = this;
+      }).catch(function (e) {
+        console.log(e);
+      });
+    }
+  }, {
+    key: "handleClickOnMovieCard",
+    value: function handleClickOnMovieCard(event) {
+      var _this3 = this;
 
-            var movieHelper = new _MoviesHelper2.default();
-            var movieItem = null;
-            movieHelper.getData(this.bestMoviesUrl).then(function (data) {
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
-
-                try {
-                    for (var _iterator = data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var movie = _step.value;
-
-                        movieItem = new _MovieCard2.default(_this.bestMoviesLayer, movie);
-                        movieItem.create("full");
-                    }
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
-                    }
-                }
-            }).catch(function (e) {
-                console.log(e);
+      if (event.target.className === "poster-wrap-full") {
+        var currentCard = event.target.parentElement;
+        var currentCardId = currentCard.getAttribute("data-id");
+        var movieHelper = new _MoviesHelper2.default();
+        movieHelper.getData(movieHelper.getUrl() + "movie/" + currentCardId + movieHelper.getApiKey()).then(function (data) {
+          console.log(data);
+          _this3.modal.appendInnerStructure(function () {
+            var title = (0, _Helpers.createElement)({
+              tag: "div",
+              classList: ["modal-title"]
             });
-        }
-    }]);
+            title.innerHTML = data.title;
+            return title;
+          });
+        }).catch(function (e) {
+          console.log(e);
+        });
+        this.modal.show();
+      }
+    }
+  }]);
 
-    return BestMovies;
+  return BestMovies;
 }();
 
 exports.default = BestMovies;
@@ -1009,6 +1066,88 @@ exports.default = Header;
 
 /***/ }),
 /* 18 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Helpers = __webpack_require__(0);
+
+__webpack_require__(31);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Modal = function () {
+  function Modal(container, prefix) {
+    _classCallCheck(this, Modal);
+
+    this.container = container;
+    this.overflow = null;
+    this.prefix = prefix;
+    this.modal = null;
+  }
+
+  _createClass(Modal, [{
+    key: "create",
+    value: function create() {
+      this.modal = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["modal", "modal" + this.prefix]
+      });
+      this.overflow = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["overflow", "overflow" + this.prefix]
+      }, this.modal);
+      this.container.appendChild(this.overflow);
+    }
+  }, {
+    key: "appendInnerStructure",
+    value: function appendInnerStructure(innerStructure) {
+      this.modal.appendChild(innerStructure());
+    }
+  }, {
+    key: "show",
+    value: function show() {
+      this.overflow.classList.add("active");
+    }
+  }, {
+    key: "hide",
+    value: function hide() {
+      this.overflow.classList.remove("active");
+      this.modal.innerHTML = "";
+    }
+  }]);
+
+  return Modal;
+}();
+
+exports.default = Modal;
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
