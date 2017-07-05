@@ -1,4 +1,4 @@
-$header-background-color: #0d1016;
+$header-background-color: darken(#1e1d23, 0%);
 $header-title-color: #fff;
 $header-border-color: lighten($header-title-color, 80%);
 $green-color: #3ab059;
@@ -17,6 +17,7 @@ $green-color: #3ab059;
   font-size: 16px;
   text-transform: uppercase;
   font-weight: bold;
+  letter-spacing: 2px;
   height: 100%;
   color: $header-title-color;
 }
@@ -42,13 +43,13 @@ $green-color: #3ab059;
   height: 20px;
   font-size: 20px;
   border-radius: 2px;
-  background: #f8f8f8;
+  background: lighten(#1e1d23, 5%);
   padding: 10px;
   outline: none;
   border: none;
   color: $header-title-color;
   transition: 0.3s linear;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid darken(#1e1d23, 2%);
 }
 
 .search:focus {

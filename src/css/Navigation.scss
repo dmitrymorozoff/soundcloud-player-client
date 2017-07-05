@@ -1,5 +1,5 @@
-$bgtab-color: #151c25;
-$green: #3ab059;
+$bgtab-color: darken(#1e1d23, 2%);
+$red: #ff0707;
 .tabs-list {
   background: $bgtab-color;
   display: flex;
@@ -20,14 +20,17 @@ $green: #3ab059;
   width: 100%;
   height: 100%;
   text-decoration: none;
-  color: #fff;
+  color: #3d3c41;
+  transition: .2s;
   font-size: 18px;
   &:hover {
-    border-bottom: 3px solid $green;
+    background: #1e1d23;
+    color: #fff;
   }
 }
 
 .tab-link.active {
-  font-weight: bold;
-  border-bottom: 3px solid $green;
+  background: #1e1d23;
+  color: #fff;
+  border-bottom: 3px solid $red;
 }

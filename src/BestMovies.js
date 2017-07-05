@@ -75,12 +75,13 @@ export default class BestMovies {
         .then(data => {
           console.log(data);
           this.modal.appendInnerStructure(function() {
-            const title = createElement({
+            let temp = createElement({
               tag: "div",
-              classList: ["modal-title"]
+              classList: ["movie-card-"]
             });
-            title.innerHTML = data.title;
-            return title;
+            let movieItem = new MovieCard(temp, data);
+            movieItem.create("modal");
+            return movieItem.card;
           });
         })
         .catch(e => {

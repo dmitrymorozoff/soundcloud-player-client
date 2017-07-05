@@ -33,6 +33,7 @@
     $end_color $end_position
   );
 }
+$background: #1e1d23;
 .top-movies-wrap {
   width: 100%;
   padding-top: 50px;
@@ -40,8 +41,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 450px;
-  @include gradient-vertical(#0d1016, #0d1016, 42%, 42%);
+  height: 520px;
+  background: $background;
 }
 .top-movies {
   position: absolute;

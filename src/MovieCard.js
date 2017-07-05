@@ -13,8 +13,8 @@ export default class MovieCard {
     this.posterPath = "https://image.tmdb.org/t/p/w500" + props.poster_path;
     this.poster = null;
   }
-  create(type = "part") {
-    let postfix = type === "part" ? "part" : "full";
+  create(cardCategory = "part") {
+    let postfix = cardCategory;
 
     const cardPoster = createElement({
       tag: "img",
@@ -37,7 +37,8 @@ export default class MovieCard {
       tag: "div",
       classList: ["movie-card-rate-" + postfix]
     });
-    cardRate.innerHTML = type === "part" ? `${this.rate}/10` : `${this.rate}`;
+    cardRate.innerHTML =
+      cardCategory === "part" ? `${this.rate}/10` : `${this.rate}`;
     const cardYear = createElement({
       tag: "div",
       classList: ["movie-card-year-" + postfix]
@@ -56,8 +57,10 @@ export default class MovieCard {
       classList: ["movie-card-btn-" + postfix]
     });
     btnAddToBookmars.innerHTML = "Add Bookmark";
-    if (type === "full") {
-      this.poster.appendChild(btnAddToBookmars);
+    if (cardCategory === "full" || cardCategory === "modal") {
+      if (cardCategory !== "modal") {
+        this.poster.appendChild(btnAddToBookmars);
+      }
       const cardDesc = createElement({
         tag: "div",
         classList: ["movie-card-desc-" + postfix]
@@ -76,5 +79,8 @@ export default class MovieCard {
       cardRate
     );
     this.container.appendChild(this.card);
+
+    console.log(this.card);
+    return this.card;
   }
 }

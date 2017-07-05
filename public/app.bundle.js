@@ -219,9 +219,9 @@ var MovieCard = function () {
   _createClass(MovieCard, [{
     key: "create",
     value: function create() {
-      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "part";
+      var cardCategory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "part";
 
-      var postfix = type === "part" ? "part" : "full";
+      var postfix = cardCategory;
 
       var cardPoster = (0, _Helpers.createElement)({
         tag: "img",
@@ -241,7 +241,7 @@ var MovieCard = function () {
         tag: "div",
         classList: ["movie-card-rate-" + postfix]
       });
-      cardRate.innerHTML = type === "part" ? this.rate + "/10" : "" + this.rate;
+      cardRate.innerHTML = cardCategory === "part" ? this.rate + "/10" : "" + this.rate;
       var cardYear = (0, _Helpers.createElement)({
         tag: "div",
         classList: ["movie-card-year-" + postfix]
@@ -256,8 +256,10 @@ var MovieCard = function () {
         classList: ["movie-card-btn-" + postfix]
       });
       btnAddToBookmars.innerHTML = "Add Bookmark";
-      if (type === "full") {
-        this.poster.appendChild(btnAddToBookmars);
+      if (cardCategory === "full" || cardCategory === "modal") {
+        if (cardCategory !== "modal") {
+          this.poster.appendChild(btnAddToBookmars);
+        }
         var cardDesc = (0, _Helpers.createElement)({
           tag: "div",
           classList: ["movie-card-desc-" + postfix]
@@ -271,6 +273,9 @@ var MovieCard = function () {
         "data-id": this.id
       }, this.poster, cardContnt, cardRate);
       this.container.appendChild(this.card);
+
+      console.log(this.card);
+      return this.card;
     }
   }]);
 
@@ -290,7 +295,7 @@ var _Player = __webpack_require__(4);
 
 var _Player2 = _interopRequireDefault(_Player);
 
-__webpack_require__(18);
+__webpack_require__(20);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -315,11 +320,11 @@ var _Layout = __webpack_require__(5);
 
 var _Layout2 = _interopRequireDefault(_Layout);
 
-var _Navigation = __webpack_require__(14);
+var _Navigation = __webpack_require__(16);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _Header = __webpack_require__(16);
+var _Header = __webpack_require__(18);
 
 var _Header2 = _interopRequireDefault(_Header);
 
@@ -433,7 +438,7 @@ var _BestMovies = __webpack_require__(11);
 
 var _BestMovies2 = _interopRequireDefault(_BestMovies);
 
-__webpack_require__(13);
+__webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -553,7 +558,7 @@ var TopMovies = function () {
     this.scrollBarLinks = [];
     this.topMoviesLayer = null;
     this.scroll = null;
-    this.topMoviesUrl = "&sort_by=popularity.desc";
+    this.topMoviesUrl = "&primary_release_year=2017";
   }
 
   _createClass(TopMovies, [{
@@ -765,11 +770,11 @@ var _MovieCard = __webpack_require__(2);
 
 var _MovieCard2 = _interopRequireDefault(_MovieCard);
 
-var _Modal = __webpack_require__(30);
+var _Modal = __webpack_require__(12);
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
-__webpack_require__(12);
+__webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -860,12 +865,13 @@ var BestMovies = function () {
         movieHelper.getData(movieHelper.getUrl() + "movie/" + currentCardId + movieHelper.getApiKey()).then(function (data) {
           console.log(data);
           _this3.modal.appendInnerStructure(function () {
-            var title = (0, _Helpers.createElement)({
+            var temp = (0, _Helpers.createElement)({
               tag: "div",
-              classList: ["modal-title"]
+              classList: ["movie-card-"]
             });
-            title.innerHTML = data.title;
-            return title;
+            var movieItem = new _MovieCard2.default(temp, data);
+            movieItem.create("modal");
+            return movieItem.card;
           });
         }).catch(function (e) {
           console.log(e);
@@ -882,9 +888,68 @@ exports.default = BestMovies;
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Helpers = __webpack_require__(0);
+
+__webpack_require__(13);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Modal = function () {
+  function Modal(container, prefix) {
+    _classCallCheck(this, Modal);
+
+    this.container = container;
+    this.overflow = null;
+    this.prefix = prefix;
+    this.modal = null;
+  }
+
+  _createClass(Modal, [{
+    key: "create",
+    value: function create() {
+      this.modal = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["modal", "modal" + this.prefix]
+      });
+      this.overflow = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["overflow", "overflow" + this.prefix]
+      }, this.modal);
+      this.container.appendChild(this.overflow);
+    }
+  }, {
+    key: "appendInnerStructure",
+    value: function appendInnerStructure(innerStructure) {
+      this.modal.appendChild(innerStructure());
+    }
+  }, {
+    key: "show",
+    value: function show() {
+      this.overflow.classList.add("active");
+    }
+  }, {
+    key: "hide",
+    value: function hide() {
+      this.overflow.classList.remove("active");
+      this.modal.innerHTML = "";
+    }
+  }]);
+
+  return Modal;
+}();
+
+exports.default = Modal;
 
 /***/ }),
 /* 13 */
@@ -894,6 +959,18 @@ exports.default = BestMovies;
 
 /***/ }),
 /* 14 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -907,7 +984,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _Helpers = __webpack_require__(0);
 
-__webpack_require__(15);
+__webpack_require__(17);
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -990,13 +1067,13 @@ var Navigation = function () {
 exports.default = Navigation;
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1010,7 +1087,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _Helpers = __webpack_require__(0);
 
-__webpack_require__(17);
+__webpack_require__(19);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1059,95 +1136,13 @@ var Header = function () {
 exports.default = Header;
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Helpers = __webpack_require__(0);
-
-__webpack_require__(31);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Modal = function () {
-  function Modal(container, prefix) {
-    _classCallCheck(this, Modal);
-
-    this.container = container;
-    this.overflow = null;
-    this.prefix = prefix;
-    this.modal = null;
-  }
-
-  _createClass(Modal, [{
-    key: "create",
-    value: function create() {
-      this.modal = (0, _Helpers.createElement)({
-        tag: "div",
-        classList: ["modal", "modal" + this.prefix]
-      });
-      this.overflow = (0, _Helpers.createElement)({
-        tag: "div",
-        classList: ["overflow", "overflow" + this.prefix]
-      }, this.modal);
-      this.container.appendChild(this.overflow);
-    }
-  }, {
-    key: "appendInnerStructure",
-    value: function appendInnerStructure(innerStructure) {
-      this.modal.appendChild(innerStructure());
-    }
-  }, {
-    key: "show",
-    value: function show() {
-      this.overflow.classList.add("active");
-    }
-  }, {
-    key: "hide",
-    value: function hide() {
-      this.overflow.classList.remove("active");
-      this.modal.innerHTML = "";
-    }
-  }]);
-
-  return Modal;
-}();
-
-exports.default = Modal;
-
-/***/ }),
-/* 31 */
+/* 20 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

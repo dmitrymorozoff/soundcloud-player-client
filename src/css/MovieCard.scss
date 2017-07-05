@@ -1,71 +1,77 @@
 $main-text-color: #fff;
-$text-color: #9d9d9d;
-$orange: #f73d28;
-$green: #3ab059;
+$movie-card-background: #18171c;
+$text-color: #3d3c41;
+$dark-gray: #1e1d23;
+$red: #ff0707;
 .movie-card-part {
   display: flex;
-  width: 400px;
-  height: 240px;
+  width: 890px;
+  height: 280px;
   margin: 50px 20px;
-  background: #151c25;
+  background: $movie-card-background;
+  border-top: 2px solid lighten($movie-card-background, 6%);
   flex-wrap: wrap;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
   position: relative;
 }
-
 .poster-wrap-part {
   padding: 0;
-  width: 50%;
-  margin-left: 25px;
+  width: 55%;
+  margin-left: 15px;
 }
-
 .poster-part {
   width: 100%;
   box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03);
   cursor: pointer;
 }
-
 .movie-card-part {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 .movie-card-title-part {
   font-size: 18px;
+  line-height: 26px;
   text-align: center;
+  margin-top: -30px;
   margin-bottom: 10px;
   color: $main-text-color;
 }
-
 .movie-card-content-part {
   display: flex;
   color: $text-color;
   flex-direction: column;
+  padding: 15px;
   align-items: center;
   width: 35%;
 }
-
 .movie-card-rate-part {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   position: absolute;
-  top: 65%;
-  left: 35%;
+  top: 63%;
+  letter-spacing: 6px;
+  left: 45%;
   color: #fff;
   font-weight: bold;
-  font-size: 62px;
+  font-size: 58px;
   text-shadow: 0 0 .2em rgba(255, 255, 255, .05), 0 0 .2em rgba(0, 0, 0, .05),
     0 .3em .2em rgba(0, 0, 0, .05);
 }
-
 .movie-card-full {
-  width: 220px;
-  margin: 15px;
-  height: 480px;
+  width: 240px;
+  margin: 45px;
+  height: 430px;
   display: flex;
   transition: 3s;
+  position: relative;
+  background: $movie-card-background;
+  border-top: 2px solid lighten($movie-card-background, 6%);
+  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.16),
+    0 100px 100px rgba(0, 0, 0, 0.08);
+  padding: 25px 10px 5px 10px;
   flex-direction: column;
+  justify-content: flex-end;
   position: relative;
   :hover {
     .poster-full {
@@ -73,16 +79,17 @@ $green: #3ab059;
     }
   }
 }
-
 .poster-wrap-full {
   padding: 0;
   width: 100%;
+  left: -40px;
+  top: -35px;
   cursor: pointer;
-  position: relative;
+  position: absolute;
   overflow: hidden;
   &:hover {
     .movie-card-btn-full {
-      top: 75%;
+      top: 45%;
     }
     &:after {
       clip-path: circle(120% at 50% 50%);
@@ -95,7 +102,6 @@ $green: #3ab059;
       );
     }
   }
-
   &:after {
     position: absolute;
     top: 0;
@@ -108,50 +114,63 @@ $green: #3ab059;
     background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.4) 0%,
-      rgba(78, 117, 220, 0.2) 100%
+      rgba(0, 0, 0, 0.9) 100%
     );
     clip-path: circle(0% at 50% 50%);
-    transition: .8s;
+    transition: .5s;
   }
 }
-
 .poster-full {
   width: 100%;
   transition: .8s;
   box-shadow: 0 15px 30px 1px rgba(0, 0, 0, 0.31);
 }
-
 .movie-card-title-full {
-  margin-top: 15px;
   color: $main-text-color;
+  top: 0;
   text-align: center;
-  font-size: 20px;
+  box-shadow: 0 10px 90px rgba(0, 0, 0, 0.16), 0 90px 90px rgba(0, 0, 0, 0.03);
+  font-size: 16px;
+  z-index: 9;
+  top: 335px;
+  width: 170px;
+  border-top: 2px solid lighten($movie-card-background, 6%);
+  height: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 10px;
+  background: #1e1d23;
+  position: absolute;
 }
-
 .movie-card-year-full {
   display: none;
 }
-
+.movie-card-content-full {
+  display: flex;
+  justify-content: center;
+}
 .movie-card-desc-full {
   text-align: center;
   height: 45px;
+
   line-height: 26px;
   margin: 20px 0;
   font-size: 16px;
   overflow: hidden;
   color: $text-color;
 }
-
 .movie-card-rate-full {
-  background: $orange;
+  background: $dark-gray;
   font-family: 'Raleway', sans-serif;
   width: 50px;
   height: 50px;
   text-align: center;
   line-height: 50px;
   position: absolute;
-  top: 62%;
-  left: 84%;
+  top: -60px;
+  left: -60px;
+  border-top: 2px solid lighten($movie-card-background, 6%);
   color: #fff;
   font-weight: bold;
   font-size: 24px;
@@ -159,7 +178,6 @@ $green: #3ab059;
   text-shadow: 0 0 .2em rgba(255, 255, 255, .05), 0 0 .2em rgba(0, 0, 0, .05),
     0 .3em .2em rgba(0, 0, 0, .05);
 }
-
 .movie-card-btn-full {
   transition: .4s;
   position: absolute;
@@ -170,8 +188,41 @@ $green: #3ab059;
   z-index: 5;
   width: 150px;
   height: 40px;
-  background: $green;
+  background: $red;
   border: none;
   color: #fff;
   font-size: 16px;
+}
+.movie-card-modal {
+  display: flex;
+}
+.poster-wrap-modal {
+  margin-top: -80px;
+  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03);
+}
+.movie-card-title-modal {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.movie-card-year-modal {
+  margin-bottom: 20px;
+}
+.movie-card-desc-modal {
+  line-height: 26px;
+}
+.movie-card-content-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 55px;
+}
+.movie-card-rate-modal {
+  background: $red;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px;
+  font-size: 46px;
+  position: absolute;
+  right: 120px;
+  bottom: 155px;
 }
