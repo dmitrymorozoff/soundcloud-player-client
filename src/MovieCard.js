@@ -1,4 +1,5 @@
 import { createElement } from "./Helpers";
+import Button from "./Button";
 import "./css/MovieCard.scss";
 
 export default class MovieCard {
@@ -12,6 +13,7 @@ export default class MovieCard {
     this.desc = props.overview;
     this.posterPath = "https://image.tmdb.org/t/p/w500" + props.poster_path;
     this.poster = null;
+    this.buyTicketButton = null;
   }
   create(cardCategory = "part") {
     let postfix = cardCategory;
@@ -52,14 +54,13 @@ export default class MovieCard {
       cardTitle,
       cardYear
     );
-    const btnAddToBookmars = createElement({
-      tag: "button",
+    const btnAddToBookmars = new Button({
+      title: "Add Bookmark",
       classList: ["movie-card-btn-" + postfix]
     });
-    btnAddToBookmars.innerHTML = "Add Bookmark";
     if (cardCategory === "full" || cardCategory === "modal") {
       if (cardCategory !== "modal") {
-        this.poster.appendChild(btnAddToBookmars);
+        this.poster.appendChild(btnAddToBookmars.create());
       }
       const cardDesc = createElement({
         tag: "div",
@@ -67,6 +68,14 @@ export default class MovieCard {
       });
       cardDesc.innerHTML = this.desc;
       cardContnt.appendChild(cardDesc);
+    }
+    const button = new Button({
+      title: "Buy Ticket",
+      classList: ["modal-btn"]
+    });
+    this.buyTicketButton = button.create();
+    if (cardCategory === "modal") {
+      cardContnt.appendChild(this.buyTicketButton);
     }
     this.card = createElement(
       {
@@ -78,9 +87,8 @@ export default class MovieCard {
       cardContnt,
       cardRate
     );
-    this.container.appendChild(this.card);
 
-    console.log(this.card);
+    this.container.appendChild(this.card);
     return this.card;
   }
 }

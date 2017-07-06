@@ -96,11 +96,36 @@ body {
 .best-movies-wrap {
   padding: 50px 25px; }
 
-.best-movies {
+.best-movies,
+.movies-wrap {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   position: relative; }
+
+.pagintaion-wrap {
+  display: flex;
+  justify-content: center; }
+
+.pagination-btn,
+.modal-btn {
+  width: 150px;
+  margin: 10px;
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
+  height: 40px;
+  background: #1e1d23;
+  border-top: 2px solid #2c2b34;
+  cursor: pointer;
+  transition: .2s; }
+  .pagination-btn:hover,
+  .modal-btn:hover {
+    background: #19181d; }
+
+.modal-btn {
+  margin-top: 20px;
+  margin-left: 0; }
 .overflow {
   display: flex;
   justify-content: center;
@@ -181,9 +206,9 @@ body {
   text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.05), 0 0 0.2em rgba(0, 0, 0, 0.05), 0 0.3em 0.2em rgba(0, 0, 0, 0.05); }
 
 .movie-card-full {
-  width: 240px;
-  margin: 45px;
-  height: 430px;
+  width: 180px;
+  margin: 40px;
+  height: 340px;
   display: flex;
   transition: 3s;
   position: relative;
@@ -231,12 +256,12 @@ body {
 
 .movie-card-title-full {
   color: #fff;
-  top: 0;
   text-align: center;
   box-shadow: 0 10px 90px rgba(0, 0, 0, 0.16), 0 90px 90px rgba(0, 0, 0, 0.03);
   font-size: 16px;
   z-index: 9;
-  top: 335px;
+  top: 245px;
+  left: -10px;
   width: 170px;
   border-top: 2px solid #26252d;
   height: 20px;
@@ -296,6 +321,7 @@ body {
   font-size: 16px; }
 
 .movie-card-modal {
+  position: relative;
   display: flex; }
 
 .poster-wrap-modal {
@@ -323,10 +349,14 @@ body {
   font-weight: bold;
   color: #fff;
   padding: 10px;
+  width: 70px;
+  text-align: center;
+  line-height: 70px;
+  height: 70px;
   font-size: 46px;
   position: absolute;
-  right: 120px;
-  bottom: 155px; }
+  right: -40px;
+  bottom: 40px; }
 .top-movies-wrap {
   width: 100%;
   padding-top: 50px;

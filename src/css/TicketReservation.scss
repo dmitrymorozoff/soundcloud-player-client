@@ -1,0 +1,38 @@
+$place-color: #27262c;
+$reserv-background: #1e1d23;
+$red: #ff0707;
+.ticket-reserv-wrapper {
+  height: 600px;
+  width: 850px;
+  padding: 20px;
+  background: $reserv-background;
+  overflow: hidden;
+}
+.places-wrap {
+  &:before {
+    content: '';
+    display: block;
+    width: 600px;
+    margin: 20px auto;
+    height: 800px;
+    border-top: 7px solid #00aeef;
+    box-shadow: inset 0 120px 20px -100px rgba(1, 174, 240, 0.2);
+  }
+  height: 40px;
+  display: flex;
+  position: relative;
+}
+.place {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transition: .1s;
+  background: $place-color;
+  &:hover {
+    background: $red;
+  }
+}
+.place.active {
+  background: darken($red, 5%);
+}

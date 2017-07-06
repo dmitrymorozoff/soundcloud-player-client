@@ -1,10 +1,36 @@
+$btn-color: #1e1d23;
 .best-movies-wrap {
   padding: 50px 25px;
 }
 
-.best-movies {
+.best-movies,
+.movies-wrap {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
+}
+.pagintaion-wrap {
+  display: flex;
+  justify-content: center;
+}
+.pagination-btn,
+.modal-btn {
+  width: 150px;
+  margin: 10px;
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
+  height: 40px;
+  background: $btn-color;
+  border-top: 2px solid lighten($btn-color, 6%);
+  cursor: pointer;
+  transition: .2s;
+  &:hover {
+    background: darken($btn-color, 2%);
+  }
+}
+.modal-btn {
+  margin-top: 20px;
+  margin-left: 0;
 }

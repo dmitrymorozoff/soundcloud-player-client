@@ -11,7 +11,7 @@ export default class TopMovies {
     this.scrollBarLinks = [];
     this.topMoviesLayer = null;
     this.scroll = null;
-    this.topMoviesUrl = "&primary_release_year=2017";
+    this.topMoviesUrl = "&primary_release_year=2017&page=8";
   }
   create() {
     this.topMoviesLayer = createElement({
