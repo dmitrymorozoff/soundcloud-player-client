@@ -40,8 +40,6 @@ module.exports = {
       filename: "app.css",
       allChunks: true,
       disable: process.env.NODE_ENV !== "production"
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    })
   ]
 };

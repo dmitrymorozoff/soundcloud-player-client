@@ -12,7 +12,7 @@ export default class BestMovies {
     this.container = container;
     this.movies = [];
     this.bestMoviesLayer = null;
-    this.currentPage = 3;
+    this.currentPage = 2;
     this.bestMoviesUrl = `&primary_release_date.gte=2016-11-15&primary_release_date.lte=2017-2-22&page=`;
     this.modalWithInfo = null;
     this.modal = null;
@@ -69,7 +69,7 @@ export default class BestMovies {
     this.pagination[1].addEventListener("click", this.nextPage.bind(this));
   }
   loadingMovies(
-    url = "&primary_release_date.gte=2016-11-15&primary_release_date.lte=2017-2-22&page=3"
+    url = "&primary_release_date.gte=2016-11-15&primary_release_date.lte=2017-2-22&page=2"
   ) {
     this.moviesWrap.innerHTML = "";
     let movieHelper = new MovieHelper();
