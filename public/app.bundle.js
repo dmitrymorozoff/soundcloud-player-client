@@ -937,6 +937,10 @@ var _BestMovies = __webpack_require__(18);
 
 var _BestMovies2 = _interopRequireDefault(_BestMovies);
 
+var _Genres = __webpack_require__(42);
+
+var _Genres2 = _interopRequireDefault(_Genres);
+
 __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -999,6 +1003,10 @@ var Layout = function () {
             var bestMovies = new _BestMovies2.default(this.layers[0]);
             bestMovies.create();
             bestMovies.loadingMovies();
+
+            var genres = new _Genres2.default(this.layers[1]);
+            genres.create();
+            genres.loadGenres();
         }
     }, {
         key: "toggleLayer",
@@ -1163,7 +1171,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".movie-card-part {\n  display: flex;\n  width: 890px;\n  height: 280px;\n  margin: 50px 20px;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  flex-wrap: wrap;\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);\n  position: relative; }\n\n.poster-wrap-part {\n  padding: 0;\n  width: 55%;\n  margin-left: 15px; }\n\n.poster-part {\n  width: 100%;\n  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03);\n  cursor: pointer; }\n\n.movie-card-part {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n\n.movie-card-title-part {\n  font-size: 18px;\n  line-height: 26px;\n  text-align: center;\n  margin-top: -30px;\n  margin-bottom: 10px;\n  color: #fff; }\n\n.movie-card-content-part {\n  display: flex;\n  color: #3d3c41;\n  flex-direction: column;\n  padding: 15px;\n  align-items: center;\n  width: 35%; }\n\n.movie-card-rate-part {\n  font-family: 'Josefin Sans', sans-serif;\n  position: absolute;\n  top: 63%;\n  letter-spacing: 6px;\n  left: 45%;\n  color: #fff;\n  font-weight: bold;\n  font-size: 58px;\n  text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.05), 0 0 0.2em rgba(0, 0, 0, 0.05), 0 0.3em 0.2em rgba(0, 0, 0, 0.05); }\n\n.movie-card-full {\n  width: 180px;\n  margin: 40px;\n  height: 340px;\n  display: flex;\n  transition: 3s;\n  position: relative;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.16), 0 100px 100px rgba(0, 0, 0, 0.08);\n  padding: 25px 10px 5px 10px;\n  flex-direction: column;\n  justify-content: flex-end;\n  position: relative; }\n  .movie-card-full :hover .poster-full {\n    transform: scale(1.7); }\n\n.poster-wrap-full {\n  padding: 0;\n  width: 100%;\n  left: -40px;\n  top: -35px;\n  cursor: pointer;\n  position: absolute;\n  overflow: hidden; }\n  .poster-wrap-full:hover .movie-card-btn-full {\n    top: 45%; }\n  .poster-wrap-full:hover:after {\n    clip-path: circle(120% at 50% 50%); }\n  .poster-wrap-full:hover:before {\n    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 90%); }\n  .poster-wrap-full:after {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    content: '';\n    display: block;\n    z-index: 3;\n    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);\n    clip-path: circle(0% at 50% 50%);\n    transition: .5s; }\n\n.poster-full {\n  width: 100%;\n  transition: .8s;\n  box-shadow: 0 15px 30px 1px rgba(0, 0, 0, 0.31); }\n\n.movie-card-title-full {\n  color: #fff;\n  text-align: center;\n  box-shadow: 0 10px 90px rgba(0, 0, 0, 0.16), 0 90px 90px rgba(0, 0, 0, 0.03);\n  font-size: 16px;\n  z-index: 9;\n  top: 245px;\n  left: -10px;\n  width: 170px;\n  border-top: 2px solid #26252d;\n  height: 20px;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  padding: 10px;\n  background: #1e1d23;\n  position: absolute; }\n\n.movie-card-year-full {\n  display: none; }\n\n.movie-card-content-full {\n  display: flex;\n  justify-content: center; }\n\n.movie-card-desc-full {\n  text-align: center;\n  height: 45px;\n  line-height: 26px;\n  margin: 20px 0;\n  font-size: 16px;\n  overflow: hidden;\n  color: #3d3c41; }\n\n.movie-card-rate-full {\n  background: #1e1d23;\n  font-family: 'Raleway', sans-serif;\n  width: 50px;\n  height: 50px;\n  text-align: center;\n  line-height: 50px;\n  position: absolute;\n  top: -60px;\n  left: -60px;\n  border-top: 2px solid #26252d;\n  color: #fff;\n  font-weight: bold;\n  font-size: 24px;\n  z-index: 5;\n  text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.05), 0 0 0.2em rgba(0, 0, 0, 0.05), 0 0.3em 0.2em rgba(0, 0, 0, 0.05); }\n\n.movie-card-btn-full {\n  transition: .4s;\n  position: absolute;\n  top: 120%;\n  left: 50%;\n  margin-left: -75px;\n  cursor: pointer;\n  z-index: 5;\n  width: 150px;\n  height: 40px;\n  background: #ff0707;\n  border: none;\n  color: #fff;\n  font-size: 16px; }\n\n.movie-card-modal {\n  position: relative;\n  display: flex; }\n\n.poster-wrap-modal {\n  margin-top: -80px;\n  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03); }\n\n.movie-card-title-modal {\n  font-size: 36px;\n  margin-bottom: 20px; }\n\n.movie-card-year-modal {\n  margin-bottom: 20px; }\n\n.movie-card-desc-modal {\n  line-height: 26px; }\n\n.movie-card-content-modal {\n  display: flex;\n  flex-direction: column;\n  padding: 55px; }\n\n.movie-card-rate-modal {\n  background: #ff0707;\n  font-family: 'Josefin Sans', sans-serif;\n  font-weight: bold;\n  color: #fff;\n  padding: 10px;\n  width: 70px;\n  text-align: center;\n  line-height: 70px;\n  height: 70px;\n  font-size: 46px;\n  position: absolute;\n  right: -40px;\n  bottom: 40px; }\n", ""]);
+exports.push([module.i, ".movie-card-part {\n  display: flex;\n  width: 890px;\n  height: 280px;\n  margin: 50px 20px;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  flex-wrap: wrap;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  position: relative; }\n\n.poster-wrap-part {\n  padding: 0;\n  width: 55%;\n  margin-left: 15px; }\n\n.poster-part {\n  width: 100%;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  cursor: pointer; }\n\n.movie-card-part {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center; }\n\n.movie-card-title-part {\n  font-size: 18px;\n  line-height: 26px;\n  text-align: center;\n  margin-top: -30px;\n  margin-bottom: 10px;\n  color: #fff; }\n\n.movie-card-content-part {\n  display: flex;\n  color: #3d3c41;\n  flex-direction: column;\n  padding: 15px;\n  align-items: center;\n  width: 35%; }\n\n.movie-card-rate-part {\n  font-family: 'Josefin Sans', sans-serif;\n  position: absolute;\n  top: 63%;\n  letter-spacing: 6px;\n  left: 45%;\n  color: #fff;\n  font-weight: bold;\n  font-size: 58px;\n  text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.05), 0 0 0.2em rgba(0, 0, 0, 0.05), 0 0.3em 0.2em rgba(0, 0, 0, 0.05); }\n\n.movie-card-full {\n  width: 180px;\n  margin: 40px;\n  height: 340px;\n  display: flex;\n  transition: 3s;\n  position: relative;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  padding: 25px 10px 5px 10px;\n  flex-direction: column;\n  justify-content: flex-end;\n  position: relative; }\n  .movie-card-full :hover .poster-full {\n    transform: scale(1.7); }\n\n.poster-wrap-full {\n  padding: 0;\n  width: 100%;\n  left: -40px;\n  top: -35px;\n  cursor: pointer;\n  position: absolute;\n  overflow: hidden; }\n  .poster-wrap-full:hover .movie-card-btn-full {\n    top: 45%; }\n  .poster-wrap-full:hover:after {\n    clip-path: circle(120% at 50% 50%); }\n  .poster-wrap-full:hover:before {\n    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 90%); }\n  .poster-wrap-full:after {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    content: '';\n    display: block;\n    z-index: 3;\n    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);\n    clip-path: circle(0% at 50% 50%);\n    transition: .5s; }\n\n.poster-full {\n  width: 100%;\n  transition: .8s;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2); }\n\n.movie-card-title-full {\n  color: #fff;\n  text-align: center;\n  box-shadow: 0 10px 90px rgba(0, 0, 0, 0.16), 0 90px 90px rgba(0, 0, 0, 0.03);\n  font-size: 16px;\n  z-index: 9;\n  top: 245px;\n  left: -10px;\n  width: 170px;\n  border-top: 2px solid #26252d;\n  height: 20px;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  padding: 10px;\n  background: #1e1d23;\n  position: absolute; }\n\n.movie-card-year-full {\n  display: none; }\n\n.movie-card-content-full {\n  display: flex;\n  justify-content: center; }\n\n.movie-card-desc-full {\n  text-align: center;\n  height: 45px;\n  line-height: 26px;\n  margin: 20px 0;\n  font-size: 16px;\n  overflow: hidden;\n  color: #3d3c41; }\n\n.movie-card-rate-full {\n  background: #1e1d23;\n  font-family: 'Raleway', sans-serif;\n  width: 50px;\n  height: 50px;\n  text-align: center;\n  line-height: 50px;\n  position: absolute;\n  top: -60px;\n  left: -60px;\n  border-top: 2px solid #26252d;\n  color: #fff;\n  font-weight: bold;\n  font-size: 24px;\n  z-index: 5;\n  text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.05), 0 0 0.2em rgba(0, 0, 0, 0.05), 0 0.3em 0.2em rgba(0, 0, 0, 0.05); }\n\n.movie-card-btn-full {\n  transition: .4s;\n  position: absolute;\n  top: 120%;\n  left: 50%;\n  margin-left: -75px;\n  cursor: pointer;\n  z-index: 5;\n  width: 150px;\n  height: 40px;\n  background: #ff0707;\n  border: none;\n  color: #fff;\n  font-size: 16px; }\n\n.movie-card-modal {\n  position: relative;\n  display: flex; }\n\n.poster-wrap-modal {\n  margin-top: -80px;\n  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03); }\n\n.movie-card-title-modal {\n  font-size: 36px;\n  margin-bottom: 20px; }\n\n.movie-card-year-modal {\n  margin-bottom: 20px; }\n\n.movie-card-desc-modal {\n  line-height: 26px; }\n\n.movie-card-content-modal {\n  display: flex;\n  flex-direction: column;\n  padding: 55px; }\n\n.movie-card-rate-modal {\n  background: #ff0707;\n  font-family: 'Josefin Sans', sans-serif;\n  font-weight: bold;\n  color: #fff;\n  padding: 10px;\n  width: 70px;\n  text-align: center;\n  line-height: 70px;\n  height: 70px;\n  font-size: 46px;\n  position: absolute;\n  right: -40px;\n  bottom: 40px; }\n", ""]);
 
 // exports
 
@@ -1679,7 +1687,7 @@ exports.default = BestMovies;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1697,131 +1705,131 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var labels = [{
-  title: "Available Seat",
-  class: "label-available"
+    title: "Available Seat",
+    class: "label-available"
 }, {
-  title: "Reserved Seat",
-  class: "label-reserved"
+    title: "Reserved Seat",
+    class: "label-reserved"
 }, {
-  title: "Your Seat",
-  class: "label-your"
+    title: "Your Seat",
+    class: "label-your"
 }, {
-  title: "Wheelchair Access",
-  class: "label-wheel"
+    title: "Wheelchair Access",
+    class: "label-wheel"
 }, {
-  title: "Disabled Seat",
-  class: "label-disabled"
+    title: "Disabled Seat",
+    class: "label-disabled"
 }];
 
 var TicketReservation = function () {
-  function TicketReservation(props) {
-    _classCallCheck(this, TicketReservation);
+    function TicketReservation(props) {
+        _classCallCheck(this, TicketReservation);
 
-    this.countPlaces = props.countPlace;
-    this.dataAboutMovie = props.data;
-    this.hallScheme = props.hallScheme;
-    this.places = [];
-    this.dropdownList = [];
-  }
+        this.countPlaces = props.countPlace;
+        this.dataAboutMovie = props.data;
+        this.hallScheme = props.hallScheme;
+        this.places = [];
+        this.dropdownList = [];
+    }
 
-  _createClass(TicketReservation, [{
-    key: "create",
-    value: function create() {
-      var _this = this;
+    _createClass(TicketReservation, [{
+        key: "create",
+        value: function create() {
+            var _this = this;
 
-      var ticketReservWrapper = (0, _Helpers.createElement)({
-        tag: "div",
-        classList: ["ticket-reserv-wrapper"]
-      });
-      var title = (0, _Helpers.createElement)({
-        tag: "div",
-        classList: ["ticket-reserv-title"]
-      });
-      title.innerHTML = "Reserve your ticket";
-      var placesWrapper = (0, _Helpers.createElement)({
-        tag: "div",
-        classList: ["places-wrap"]
-      });
-      var startPosition = 60;
-      var topPlank = 170;
-      var leftPlank = startPosition;
-      var placeMargin = 40;
-      for (var i = 0; i < this.hallScheme.length; i++) {
-        for (var j = 0; j < this.hallScheme[i].length; j++) {
-          if (this.hallScheme[i][j] !== 0) {
-            var placeElement = (0, _Helpers.createElement)({
-              tag: "div",
-              classList: ["place"]
+            var ticketReservWrapper = (0, _Helpers.createElement)({
+                tag: "div",
+                classList: ["ticket-reserv-wrapper"]
             });
-            placeElement.innerHTML = this.hallScheme[i][j];
-            placeElement.style.top = topPlank + "px";
-            placeElement.style.left = leftPlank + "px";
-            placeElement.addEventListener("click", this.handePlaceClick.bind(this));
-            this.places.push(placeElement);
-            placesWrapper.appendChild(placeElement);
-          }
-          leftPlank += placeMargin;
+            var title = (0, _Helpers.createElement)({
+                tag: "div",
+                classList: ["ticket-reserv-title"]
+            });
+            title.innerHTML = "Reserve your ticket";
+            var placesWrapper = (0, _Helpers.createElement)({
+                tag: "div",
+                classList: ["places-wrap"]
+            });
+            var startPosition = 60;
+            var topPlank = 155;
+            var leftPlank = startPosition;
+            var placeMargin = 40;
+            for (var i = 0; i < this.hallScheme.length; i++) {
+                for (var j = 0; j < this.hallScheme[i].length; j++) {
+                    if (this.hallScheme[i][j] !== 0) {
+                        var placeElement = (0, _Helpers.createElement)({
+                            tag: "div",
+                            classList: ["place"]
+                        });
+                        placeElement.innerHTML = this.hallScheme[i][j];
+                        placeElement.style.top = topPlank + "px";
+                        placeElement.style.left = leftPlank + "px";
+                        placeElement.addEventListener("click", this.handePlaceClick.bind(this));
+                        this.places.push(placeElement);
+                        placesWrapper.appendChild(placeElement);
+                    }
+                    leftPlank += placeMargin;
+                }
+                leftPlank = startPosition;
+                topPlank += placeMargin;
+            }
+            ticketReservWrapper.appendChild(title);
+            var dropdownWrapper = (0, _Helpers.createElement)({
+                tag: "div",
+                classList: ["dropdownWrapper"]
+            });
+            var dropFormat = new _Dropdown2.default({
+                title: "Choose fromat",
+                links: ["IMAX", "IMAX 3D", "3D"],
+                classList: ["dropdown-format"]
+            });
+            var dropTime = new _Dropdown2.default({
+                title: "Choose time",
+                links: ["17:55", "18:20", "21:30"],
+                classList: ["dropdown-time"]
+            });
+            this.dropdownList.push(dropFormat);
+            this.dropdownList.push(dropTime);
+            dropdownWrapper.appendChild(dropFormat.create());
+            dropdownWrapper.appendChild(dropTime.create());
+            var labelsWrapper = (0, _Helpers.createElement)({
+                tag: "div",
+                classList: ["ticket-labels-wrap"]
+            });
+            for (var _i = 0; _i < labels.length; _i++) {
+                var label = (0, _Helpers.createElement)({
+                    tag: "div",
+                    classList: ["label", labels[_i].class]
+                });
+                label.innerHTML = labels[_i].title;
+                labelsWrapper.appendChild(label);
+            }
+            ticketReservWrapper.appendChild(dropdownWrapper);
+            ticketReservWrapper.appendChild(placesWrapper);
+            ticketReservWrapper.appendChild(labelsWrapper);
+            this.dropdownList.forEach(function (item) {
+                item.dropDownBtn.addEventListener("click", _this.handeDropdownClick.bind(_this, item));
+            });
+            return ticketReservWrapper;
         }
-        leftPlank = startPosition;
-        topPlank += placeMargin;
-      }
-      ticketReservWrapper.appendChild(title);
-      var dropdownWrapper = (0, _Helpers.createElement)({
-        tag: "div",
-        classList: ["dropdownWrapper"]
-      });
-      var dropFormat = new _Dropdown2.default({
-        title: "Choose fromat",
-        links: ["IMAX", "IMAX 3D", "3D"],
-        classList: ["dropdown-format"]
-      });
-      var dropTime = new _Dropdown2.default({
-        title: "Choose time",
-        links: ["17:55", "18:20", "21:30"],
-        classList: ["dropdown-time"]
-      });
-      this.dropdownList.push(dropFormat);
-      this.dropdownList.push(dropTime);
-      dropdownWrapper.appendChild(dropFormat.create());
-      dropdownWrapper.appendChild(dropTime.create());
-      var labelsWrapper = (0, _Helpers.createElement)({
-        tag: "div",
-        classList: ["ticket-labels-wrap"]
-      });
-      for (var _i = 0; _i < labels.length; _i++) {
-        var label = (0, _Helpers.createElement)({
-          tag: "div",
-          classList: ["label", labels[_i].class]
-        });
-        label.innerHTML = labels[_i].title;
-        labelsWrapper.appendChild(label);
-      }
-      ticketReservWrapper.appendChild(dropdownWrapper);
-      ticketReservWrapper.appendChild(placesWrapper);
-      ticketReservWrapper.appendChild(labelsWrapper);
-      this.dropdownList.forEach(function (item) {
-        item.dropDownBtn.addEventListener("click", _this.handeDropdownClick.bind(_this, item));
-      });
-      return ticketReservWrapper;
-    }
-  }, {
-    key: "handePlaceClick",
-    value: function handePlaceClick(event) {
-      var currentPlace = event.target;
-      currentPlace.classList.add("active");
-    }
-  }, {
-    key: "handeDropdownClick",
-    value: function handeDropdownClick(item) {
-      if (item.hasActive()) {
-        item.hide();
-      } else {
-        item.show();
-      }
-    }
-  }]);
+    }, {
+        key: "handePlaceClick",
+        value: function handePlaceClick(event) {
+            var currentPlace = event.target;
+            currentPlace.classList.add("active");
+        }
+    }, {
+        key: "handeDropdownClick",
+        value: function handeDropdownClick(item) {
+            if (item.hasActive()) {
+                item.hide();
+            } else {
+                item.show();
+            }
+        }
+    }]);
 
-  return TicketReservation;
+    return TicketReservation;
 }();
 
 exports.default = TicketReservation;
@@ -1968,7 +1976,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: \"ElegantIcons\";\n  font-style: normal;\n  font-weight: normal;\n  src: url(\"https://cdn.rawgit.com/mdentinho/elegant-icons-sass/e48e7df0/fonts/ElegantIcons.woff2\") format(\"woff2\"), url(\"https://cdn.rawgit.com/mdentinho/elegant-icons-sass/e48e7df0/fonts/ElegantIcons.woff\") format(\"woff\"); }\n\n.dropdown-btn-icon::before {\n  font-family: \"ElegantIcons\";\n  font-style: normal;\n  font-variant: normal;\n  font-weight: normal;\n  line-height: 1;\n  speak: none;\n  text-transform: none; }\n\n.dropdown {\n  position: relative;\n  margin-top: 20px; }\n\n.dropdown-btn {\n  width: 200px;\n  height: 40px;\n  background: #27262c;\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 14px;\n  color: #fff; }\n\n.dropdown-btn-icon {\n  color: #ff0707;\n  font-weight: bold;\n  margin-top: 4px;\n  margin-left: 8px; }\n  .dropdown-btn-icon::before {\n    content: 'L'; }\n\n.dropdown-list {\n  visibility: hidden;\n  opacity: 0;\n  position: absolute;\n  list-style: none;\n  z-index: 999; }\n\n.dropdown-list.active {\n  visibility: visible;\n  opacity: 1; }\n\n.dropdown-list-link {\n  width: 200px;\n  height: 40px;\n  text-align: center;\n  border-bottom: 1px solid #18181c;\n  line-height: 40px;\n  font-size: 14px;\n  cursor: pointer;\n  color: #fff;\n  background: #141316; }\n  .dropdown-list-link:hover {\n    background: #18181c; }\n", ""]);
+exports.push([module.i, ".dropdown {\n  position: relative;\n  margin-top: 20px; }\n\n.dropdown-btn {\n  width: 200px;\n  height: 40px;\n  background: #27262c;\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 14px;\n  color: #fff; }\n\n.dropdown-list {\n  visibility: hidden;\n  opacity: 0;\n  position: absolute;\n  list-style: none;\n  z-index: 999; }\n\n.dropdown-list.active {\n  visibility: visible;\n  opacity: 1; }\n\n.dropdown-list-link {\n  width: 200px;\n  height: 40px;\n  text-align: center;\n  border-bottom: 1px solid #18181c;\n  line-height: 40px;\n  font-size: 14px;\n  cursor: pointer;\n  color: #fff;\n  background: #141316; }\n  .dropdown-list-link:hover {\n    background: #18181c; }\n", ""]);
 
 // exports
 
@@ -2013,7 +2021,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".ticket-reserv-wrapper {\n  height: 700px;\n  width: 850px;\n  position: relative;\n  background: #1e1d23;\n  overflow: hidden; }\n\n.places-wrap {\n  position: absolute;\n  z-index: 0;\n  top: -75px;\n  height: 40px;\n  display: flex;\n  position: relative; }\n  .places-wrap:before {\n    content: '';\n    z-index: 1;\n    display: block;\n    width: 600px;\n    margin: 110px auto;\n    border-top: 7px solid #00aeef;\n    box-shadow: inset 0 120px 20px -100px rgba(1, 174, 240, 0.2); }\n\n.ticket-reserv-title {\n  width: 100%;\n  height: 60px;\n  background: #19181d;\n  text-align: center;\n  font-weight: bold;\n  line-height: 60px;\n  text-transform: uppercase;\n  color: #3d3c41;\n  font-size: 16px; }\n\n.place {\n  position: absolute;\n  width: 30px;\n  text-align: center;\n  line-height: 30px;\n  height: 30px;\n  cursor: pointer;\n  font-size: 14px;\n  color: #3d3c41;\n  transition: .1s;\n  background: #27262c; }\n  .place:hover {\n    color: #fff;\n    background: #ff0707; }\n\n.place.active {\n  color: #fff;\n  background: #ed0000; }\n\n.dropdownWrapper {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n  margin-top: 15px;\n  padding: 0 30px; }\n\n.ticket-labels-wrap {\n  display: flex;\n  width: 90%;\n  color: #56545c;\n  justify-content: space-around;\n  align-items: center;\n  position: absolute;\n  top: 600px;\n  margin-left: 5%; }\n\n.label:before {\n  content: '';\n  display: inline-block;\n  margin-right: 10px;\n  width: 10px;\n  height: 10px;\n  background: #27262c; }\n\n.label-available:before {\n  background: #605ca9; }\n\n.label-reserved:before {\n  background: #27262c; }\n\n.label-your:before {\n  background: #ff0707; }\n\n.label-wheel:before {\n  background: #eb962b; }\n\n.label-disabled:before {\n  background: #9d9d9d; }\n", ""]);
+exports.push([module.i, ".ticket-reserv-wrapper {\n  height: 600px;\n  width: 850px;\n  position: relative;\n  background: #1e1d23;\n  overflow: hidden; }\n\n.places-wrap {\n  position: absolute;\n  z-index: 0;\n  top: -75px;\n  height: 40px;\n  display: flex;\n  position: relative; }\n  .places-wrap:before {\n    content: '';\n    z-index: 1;\n    display: block;\n    width: 600px;\n    margin: 110px auto;\n    border-top: 7px solid #00aeef;\n    box-shadow: inset 0 120px 20px -100px rgba(1, 174, 240, 0.2); }\n\n.ticket-reserv-title {\n  width: 100%;\n  height: 50px;\n  background: #19181d;\n  text-align: center;\n  font-weight: bold;\n  line-height: 50px;\n  text-transform: uppercase;\n  color: #3d3c41;\n  font-size: 16px; }\n\n.place {\n  position: absolute;\n  width: 30px;\n  text-align: center;\n  line-height: 30px;\n  height: 30px;\n  cursor: pointer;\n  font-size: 14px;\n  color: #3d3c41;\n  transition: .1s;\n  background: #27262c; }\n  .place:hover {\n    color: #fff;\n    background: #ff0707; }\n\n.place.active {\n  color: #fff;\n  background: #ed0000; }\n\n.dropdownWrapper {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n  margin-top: 15px;\n  padding: 0 30px; }\n\n.ticket-labels-wrap {\n  display: flex;\n  width: 90%;\n  color: #56545c;\n  justify-content: space-around;\n  align-items: center;\n  position: absolute;\n  top: 545px;\n  margin-left: 5%; }\n\n.label:before {\n  content: '';\n  display: inline-block;\n  margin-right: 10px;\n  width: 10px;\n  height: 10px;\n  background: #27262c; }\n\n.label-available:before {\n  background: #605ca9; }\n\n.label-reserved:before {\n  background: #27262c; }\n\n.label-your:before {\n  background: #ff0707; }\n\n.label-wheel:before {\n  background: #eb962b; }\n\n.label-disabled:before {\n  background: #9d9d9d; }\n", ""]);
 
 // exports
 
@@ -2477,7 +2485,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".header {\n  width: 100%;\n  height: 80px;\n  background: #1e1d23;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center; }\n\n.header-logo-title {\n  display: flex;\n  align-items: center;\n  font-size: 16px;\n  text-transform: uppercase;\n  font-weight: bold;\n  letter-spacing: 2px;\n  height: 100%;\n  color: #fff; }\n\n.header-logo-wrap {\n  display: flex;\n  align-items: center;\n  padding-left: 45px;\n  height: 100%;\n  width: 5%; }\n\n.header-logo-title {\n  width: 15%; }\n\n.logo {\n  height: 65%; }\n\n.search {\n  margin-left: 80px;\n  width: 70%;\n  display: inline-block;\n  height: 20px;\n  font-size: 20px;\n  border-radius: 2px;\n  background: #2a2931;\n  padding: 10px;\n  outline: none;\n  border: none;\n  color: #fff;\n  transition: 0.3s linear;\n  border-bottom: 1px solid #19181d; }\n\n.search:focus {\n  background: #f3f3f3; }\n", ""]);
+exports.push([module.i, ".header {\n  width: 100%;\n  height: 80px;\n  background: #1e1d23;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center; }\n\n.header-logo-title {\n  display: flex;\n  align-items: center;\n  font-size: 16px;\n  text-transform: uppercase;\n  font-weight: bold;\n  letter-spacing: 2px;\n  height: 100%;\n  color: #fff; }\n\n.header-logo-wrap {\n  display: flex;\n  align-items: center;\n  padding-left: 45px;\n  height: 100%;\n  width: 5%; }\n\n.header-logo-title {\n  width: 15%; }\n\n.logo {\n  height: 65%; }\n\n.search {\n  margin-left: 80px;\n  width: 60%;\n  display: inline-block;\n  height: 20px;\n  font-size: 20px;\n  border-radius: 2px;\n  background: #2a2931;\n  padding: 10px;\n  outline: none;\n  border: none;\n  color: #fff;\n  transition: 0.3s linear;\n  border-bottom: 1px solid #19181d; }\n\n.search:focus {\n  background: #f3f3f3; }\n", ""]);
 
 // exports
 
@@ -2526,6 +2534,246 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Jos
 
 // module
 exports.push([module.i, "* {\n  padding: 0;\n  margin: 0; }\n\nbody {\n  background: #242329;\n  font-family: 'Roboto', sans-serif;\n  height: 100vh; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 41 */,
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Sidebar = __webpack_require__(43);
+
+var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+var _Helpers = __webpack_require__(0);
+
+var _MoviesHelper = __webpack_require__(3);
+
+var _MoviesHelper2 = _interopRequireDefault(_MoviesHelper);
+
+__webpack_require__(44);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Genres = function () {
+    function Genres(container) {
+        _classCallCheck(this, Genres);
+
+        this.container = container;
+        this.sidebar = null;
+    }
+
+    _createClass(Genres, [{
+        key: "create",
+        value: function create() {
+            var sidebar = new _Sidebar2.default();
+            this.sidebar = sidebar.create();
+            var genresWrap = (0, _Helpers.createElement)({
+                tag: "div",
+                classList: ["genres-wrap"]
+            }, this.sidebar);
+            this.container.appendChild(genresWrap);
+        }
+    }, {
+        key: "loadGenres",
+        value: function loadGenres() {
+            var _this = this;
+
+            var movieHelper = new _MoviesHelper2.default();
+            movieHelper.getData(movieHelper.getUrl() + "genre/movie/list" + movieHelper.getApiKey()).then(function (data) {
+                console.log(data.genres);
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = data.genres[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var item = _step.value;
+
+                        var genreItem = (0, _Helpers.createElement)({
+                            tag: "li",
+                            classList: ["sidebar-list-item"]
+                        });
+                        genreItem.innerHTML = item.name;
+                        genreItem.addEventListener("click", _this.handleGenresListClick.bind(_this));
+                        _this.sidebar.appendChild(genreItem);
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+            }).catch(function (e) {
+                console.log(e);
+            });
+        }
+    }, {
+        key: "handleGenresListClick",
+        value: function handleGenresListClick(event) {
+            console.log(event.target);
+        }
+    }]);
+
+    return Genres;
+}();
+
+exports.default = Genres;
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Helpers = __webpack_require__(0);
+
+__webpack_require__(46);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Sidebar = function () {
+    function Sidebar() {
+        _classCallCheck(this, Sidebar);
+
+        this.listItems = [];
+        this.sidebarList = null;
+    }
+
+    _createClass(Sidebar, [{
+        key: "create",
+        value: function create() {
+            var sidebarListWrap = (0, _Helpers.createElement)({
+                tag: "div",
+                classList: ["sidebar-list-wrap"]
+            });
+            this.sidebarList = (0, _Helpers.createElement)({
+                tag: "ul",
+                classList: ["sidebar-list"]
+            });
+            return this.sidebarList;
+        }
+    }]);
+
+    return Sidebar;
+}();
+
+exports.default = Sidebar;
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(45);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Genres.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Genres.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".genres-wrap {\n  width: 100%;\n  padding: 25px; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(47);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Sidebar.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Sidebar.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".sidebar-list-wrap {\n  background: #1e1d23; }\n\n.sidebar-list {\n  width: 250px;\n  list-style-type: none;\n  background: #1e1d23;\n  border-bottom: 1px solid #19181d;\n  border-top: 2px solid #2c2b34;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2); }\n\n.sidebar-list-item {\n  height: 40px;\n  font-size: 14px;\n  line-height: 40px;\n  color: #fff;\n  text-transform: uppercase;\n  cursor: pointer;\n  padding-left: 25px; }\n  .sidebar-list-item:hover {\n    background: #232229; }\n", ""]);
 
 // exports
 

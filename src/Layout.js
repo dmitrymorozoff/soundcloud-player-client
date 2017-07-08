@@ -1,6 +1,7 @@
 import { createElement } from "./Helpers";
 import TopMovies from "./TopMovies";
 import BestMovies from "./BestMovies";
+import Genres from "./Genres";
 import "./css/Layout.scss";
 
 export default class Layout {
@@ -32,6 +33,10 @@ export default class Layout {
         const bestMovies = new BestMovies(this.layers[0]);
         bestMovies.create();
         bestMovies.loadingMovies();
+
+        const genres = new Genres(this.layers[1]);
+        genres.create();
+        genres.loadGenres();
     }
 
     toggleLayer(newActiveId) {
