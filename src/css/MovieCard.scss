@@ -4,274 +4,314 @@ $text-color: darken(#7a797e, 15%);
 $dark-gray: #1e1d23;
 $red: #ff0707;
 .movie-card-part {
-    display: flex;
-    width: 640px;
-    height: 280px;
-    margin: 50px 20px;
-    background: $movie-card-background;
-    border-top: 2px solid lighten($movie-card-background, 6%);
-    flex-wrap: wrap;
-    box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
-    position: relative;
+  display: flex;
+  width: 640px;
+  height: 280px;
+  margin: 50px 20px;
+  background: $movie-card-background;
+  border-top: 2px solid lighten($movie-card-background, 6%);
+  flex-wrap: wrap;
+  box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
+  position: relative;
 }
 
 .poster-wrap-part {
-    padding: 0;
-    width: 38%;
-    margin-left: -15px;
+  padding: 0;
+  width: 38%;
+  margin-left: -15px;
 }
 
 .poster-part {
-    width: 100%;
-    box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
-    cursor: pointer;
-    margin-left: 30px;
+  width: 100%;
+  box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
+  cursor: pointer;
+  margin-left: 30px;
 }
 
 .movie-card-year-part {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 .movie-card-title-part {
-    font-size: 20px;
-    text-align: left;
-    margin-top: -50px;
-    line-height: 26px;
-    color: $main-text-color;
+  font-size: 20px;
+  text-align: left;
+  margin-top: -50px;
+  line-height: 26px;
+  color: $main-text-color;
 }
 
 .movie-card-content-part {
-    display: flex;
-    color: $text-color;
-    flex-direction: column;
-    padding: 15px;
-    text-align: center;
-    width: 45%;
+  display: flex;
+  color: $text-color;
+  flex-direction: column;
+  padding: 15px;
+  text-align: center;
+  width: 45%;
 }
 
 .movie-card-desc-part {
-    overflow: hidden;
-    font-size: 13px;
-    line-height: 22px;
-    height: 90px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 22px;
+  height: 90px;
 }
 
 .movie-card-rate-part {
-    font-family: 'Josefin Sans', sans-serif;
-    position: absolute;
-    top: 73%;
-    letter-spacing: 6px;
-    left: 35%;
-    color: #fff;
-    font-weight: bold;
-    font-size: 58px;
-    text-shadow: 0 0 .2em rgba(255, 255, 255, .05), 0 0 .2em rgba(0, 0, 0, .05), 0 .3em .2em rgba(0, 0, 0, .05);
+  font-family: 'Josefin Sans', sans-serif;
+  position: absolute;
+  top: 73%;
+  letter-spacing: 6px;
+  left: 35%;
+  color: #fff;
+  font-weight: bold;
+  font-size: 58px;
+  text-shadow: 0 0 .2em rgba(255, 255, 255, .05), 0 0 .2em rgba(0, 0, 0, .05),
+    0 .3em .2em rgba(0, 0, 0, .05);
 }
 
 .movie-card-btn-part {
-    cursor: pointer;
-    z-index: 5;
-    width: 120px;
-    height: 35px;
-    background: none;
-    border: 2px solid $red;
-    color: $red;
-    position: absolute;
-    font-size: 14px;
-    top: 78%;
-    left: 75%;
+  cursor: pointer;
+  z-index: 5;
+  width: 120px;
+  height: 35px;
+  background: none;
+  border: 2px solid $red;
+  color: $red;
+  position: absolute;
+  font-size: 14px;
+  top: 78%;
+  left: 75%;
 }
 
 .movie-card-full {
-    width: 140px;
-    margin: 40px;
-    height: 260px;
-    display: flex;
-    transition: 3s;
-    position: relative;
-    background: $movie-card-background;
-    border-top: 2px solid lighten($movie-card-background, 6%);
-    box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
-    padding: 25px 10px 5px 10px;
-    flex-direction: column;
-    justify-content: flex-end;
-    position: relative;
-     :hover {
-        .poster-full {
-            transform: scale(1.7);
-        }
+  width: 140px;
+  margin: 40px;
+  height: 260px;
+  display: flex;
+  transition: 3s;
+  position: relative;
+  background: $movie-card-background;
+  border-top: 2px solid lighten($movie-card-background, 6%);
+  box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
+  padding: 25px 10px 5px 10px;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  :hover {
+    .poster-full {
+      transform: scale(1.7);
     }
+  }
 }
 
 .poster-wrap-full {
-    padding: 0;
-    width: 100%;
-    left: -40px;
-    top: -35px;
-    cursor: pointer;
-    position: absolute;
-    overflow: hidden;
-    &:hover {
-        .movie-card-btn-full {
-            top: 45%;
-        }
-        &:after {
-            clip-path: circle(120% at 50% 50%);
-        }
-        &:before {
-            background: linear-gradient( to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 90%);
-        }
+  padding: 0;
+  width: 100%;
+  left: -40px;
+  top: -35px;
+  cursor: pointer;
+  position: absolute;
+  overflow: hidden;
+  &:hover {
+    .movie-card-btn-full {
+      top: 45%;
     }
     &:after {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        content: '';
-        display: block;
-        z-index: 3;
-        background: linear-gradient( to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);
-        clip-path: circle(0% at 50% 50%);
-        transition: .5s;
+      clip-path: circle(120% at 50% 50%);
     }
+    &:before {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.1) 90%
+      );
+    }
+  }
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    display: block;
+    z-index: 3;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+    clip-path: circle(0% at 50% 50%);
+    transition: .5s;
+  }
 }
 
 .poster-full {
-    width: 100%;
-    transition: .8s;
-    box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
+  width: 100%;
+  transition: .8s;
+  box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
 }
 
 .movie-card-title-full {
-    color: $main-text-color;
-    text-align: center;
-    box-shadow: 0 10px 90px rgba(0, 0, 0, 0.16), 0 90px 90px rgba(0, 0, 0, 0.03);
-    font-size: 14px;
-    z-index: 9;
-    top: 185px;
-    left: -10px;
-    width: 170px;
-    border-top: 2px solid lighten($movie-card-background, 6%);
-    height: 20px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding: 10px;
-    background: #1e1d23;
-    position: absolute;
+  color: $main-text-color;
+  text-align: center;
+  box-shadow: 0 10px 90px rgba(0, 0, 0, 0.16), 0 90px 90px rgba(0, 0, 0, 0.03);
+  font-size: 14px;
+  z-index: 9;
+  top: 185px;
+  left: -10px;
+  width: 170px;
+  border-top: 2px solid lighten($movie-card-background, 6%);
+  height: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 10px;
+  background: #1e1d23;
+  position: absolute;
 }
 
 .movie-card-year-full {
-    display: none;
+  display: none;
 }
 
 .movie-card-content-full {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .movie-card-desc-full {
-    text-align: center;
-    height: 40px;
-    line-height: 20px;
-    font-weight: 600;
-    margin: 5px 0;
-    font-size: 13px;
-    overflow: hidden;
-    color: $text-color;
+  text-align: center;
+  height: 40px;
+  line-height: 20px;
+  font-weight: 600;
+  margin: 5px 0;
+  font-size: 13px;
+  overflow: hidden;
+  color: $text-color;
 }
 
 .movie-card-rate-full {
-    background: $dark-gray;
-    font-family: 'Raleway', sans-serif;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    position: absolute;
-    top: -60px;
-    left: -60px;
-    border-top: 2px solid lighten($movie-card-background, 6%);
-    color: #fff;
-    font-weight: bold;
-    font-size: 24px;
-    z-index: 5;
-    text-shadow: 0 0 .2em rgba(255, 255, 255, .05), 0 0 .2em rgba(0, 0, 0, .05), 0 .3em .2em rgba(0, 0, 0, .05);
+  background: $dark-gray;
+  font-family: 'Raleway', sans-serif;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  border-top: 2px solid lighten($movie-card-background, 6%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  z-index: 5;
+  text-shadow: 0 0 .2em rgba(255, 255, 255, .05), 0 0 .2em rgba(0, 0, 0, .05),
+    0 .3em .2em rgba(0, 0, 0, .05);
 }
 
 .movie-card-btn-full {
-    transition: .4s;
-    position: absolute;
-    top: 120%;
-    left: 50%;
-    margin-left: -60px;
-    cursor: pointer;
-    z-index: 5;
-    width: 120px;
-    height: 35px;
-    background: $red;
-    border: none;
-    color: #fff;
-    font-size: 14px;
+  transition: .4s;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  margin-left: -60px;
+  cursor: pointer;
+  z-index: 5;
+  width: 120px;
+  height: 35px;
+  background: $red;
+  border: none;
+  color: #fff;
+  font-size: 14px;
 }
 
 .movie-card-modal {
-    height: 100%;
-    width: 750px;
-    position: relative;
-    display: flex;
+  height: 100%;
+  width: 750px;
+  position: relative;
+  display: flex;
 }
 
 .poster-wrap-modal {
-    height: 100%;
-    margin-top: -70px;
-    box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03);
+  height: 100%;
+  margin-top: -70px;
+  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03);
 }
 
 .poster-modal {
-    height: 130%;
+  height: 130%;
 }
 
 .movie-card-title-modal {
-    font-size: 28px;
-    margin-bottom: 20px;
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
 .movie-card-year-modal {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .movie-card-desc-modal {
-    font-size: 14px;
-    font-weight: normal;
-    max-height: 125px;
-    overflow: hidden;
-    line-height: 26px;
+  font-size: 14px;
+  font-weight: normal;
+  max-height: 125px;
+  overflow: hidden;
+  line-height: 26px;
 }
 
 .movie-card-content-modal {
-    display: flex;
-    flex-direction: column;
-    padding: 55px;
+  display: flex;
+  flex-direction: column;
+  padding: 55px;
 }
 
 .movie-card-rate-modal {
-    background: $red;
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: bold;
-    color: #fff;
-    padding: 10px;
-    width: 70px;
-    text-align: center;
-    line-height: 70px;
-    height: 70px;
-    font-size: 46px;
-    position: absolute;
-    right: -40px;
-    bottom: -40px;
+  background: $red;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px;
+  width: 70px;
+  text-align: center;
+  line-height: 70px;
+  height: 70px;
+  font-size: 46px;
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
 }
 
 .modal-btn {
-    min-height: 40px;
+  min-height: 40px;
+}
+.poster-wrap-grid {
+  padding: 0;
+}
+.poster-grid {
+  width: 100%;
+}
+.movie-card-title-grid {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.movie-card-year-grid {
+  display: none;
+}
+.movie-card-content-grid {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  padding: 20px;
+
+  overflow: hidden;
+  color: $text-color;
+  line-height: 22px;
+}
+.movie-card-btn-grid,
+.movie-card-rate-grid {
+  display: none;
 }

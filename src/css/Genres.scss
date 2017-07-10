@@ -1,4 +1,32 @@
+$dark-gray: #1e1d23;
+$movie-card-background: #18171c;
 .genres-wrap {
-    width: 100%;
-    padding: 25px;
+  width: 100%;
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.genres-grid {
+  display: grid;
+  width: 85%;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-auto-rows: 370px;
+  grid-auto-flow: row dense;
+}
+
+.grid-item {
+  overflow: hidden;
+  background: $dark-gray;
+  background: $movie-card-background;
+  border-top: 2px solid lighten($movie-card-background, 6%);
+  box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
+}
+.grid-item:nth-child(3n) {
+  grid-row-end: span 3;
+}
+
+.grid-item:nth-child(4n) {
+  grid-row-end: span 2;
 }
