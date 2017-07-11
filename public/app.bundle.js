@@ -921,7 +921,7 @@ exports.default = Player;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -936,6 +936,10 @@ var _BestMovies = __webpack_require__(18);
 
 var _BestMovies2 = _interopRequireDefault(_BestMovies);
 
+var _BestActors = __webpack_require__(47);
+
+var _BestActors2 = _interopRequireDefault(_BestActors);
+
 var _Genres = __webpack_require__(31);
 
 var _Genres2 = _interopRequireDefault(_Genres);
@@ -947,77 +951,79 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Layout = function () {
-    function Layout(container, props) {
-        _classCallCheck(this, Layout);
+  function Layout(container, props) {
+    _classCallCheck(this, Layout);
 
-        this.container = container;
-        this.count = props.layersList.length;
-        this.layers = [];
-        this.activeLayerIndex = props.activeLayer;
-        this.props = props;
-        this.activeLayer = null;
+    this.container = container;
+    this.count = props.layersList.length;
+    this.layers = [];
+    this.activeLayerIndex = props.activeLayer;
+    this.props = props;
+    this.activeLayer = null;
+  }
+
+  _createClass(Layout, [{
+    key: "create",
+    value: function create() {
+      var indexLayer = 1;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.props.layersList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var item = _step.value;
+
+          var layer = (0, _Helpers.createElement)({
+            tag: "div",
+            classList: ["layer", "layer-" + indexLayer, item.link],
+            "data-id": indexLayer
+          });
+          this.layers.push(layer);
+          this.container.appendChild(layer);
+          indexLayer++;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      this.activeLayer = this.layers[this.activeLayerIndex];
+      this.activeLayer.classList.add("active");
+      var topMovies = new _TopMovies2.default(this.layers[0]);
+      topMovies.create();
+      topMovies.loadingMovies();
+      var bestActors = new _BestActors2.default(this.layers[0]);
+      bestActors.create();
+      bestActors.loadingActors();
+      var bestMovies = new _BestMovies2.default(this.layers[0]);
+      bestMovies.create();
+      bestMovies.loadingMovies();
+      var genres = new _Genres2.default(this.layers[1]);
+      genres.create();
+      genres.loadGenres();
     }
+  }, {
+    key: "toggleLayer",
+    value: function toggleLayer(newActiveId) {
+      this.activeLayer.classList.toggle("active");
+      this.activeLayerIndex = newActiveId;
+      this.activeLayer = this.layers[newActiveId];
+      this.activeLayer.classList.add("active");
+    }
+  }]);
 
-    _createClass(Layout, [{
-        key: "create",
-        value: function create() {
-            var indexLayer = 1;
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this.props.layersList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var item = _step.value;
-
-                    var layer = (0, _Helpers.createElement)({
-                        tag: "div",
-                        classList: ["layer", "layer-" + indexLayer, item.link],
-                        "data-id": indexLayer
-                    });
-                    this.layers.push(layer);
-                    this.container.appendChild(layer);
-                    indexLayer++;
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            this.activeLayer = this.layers[this.activeLayerIndex];
-            this.activeLayer.classList.add("active");
-            var topMovies = new _TopMovies2.default(this.layers[0]);
-            topMovies.create();
-            topMovies.loadingMovies();
-            var bestMovies = new _BestMovies2.default(this.layers[0]);
-            bestMovies.create();
-            bestMovies.loadingMovies();
-
-            var genres = new _Genres2.default(this.layers[1]);
-            genres.create();
-            genres.loadGenres();
-        }
-    }, {
-        key: "toggleLayer",
-        value: function toggleLayer(newActiveId) {
-            this.activeLayer.classList.toggle("active");
-            this.activeLayerIndex = newActiveId;
-            this.activeLayer = this.layers[newActiveId];
-            this.activeLayer.classList.add("active");
-        }
-    }]);
-
-    return Layout;
+  return Layout;
 }();
 
 exports.default = Layout;
@@ -1170,7 +1176,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".movie-card-part {\n  display: flex;\n  width: 640px;\n  height: 280px;\n  margin: 50px 20px;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  flex-wrap: wrap;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  position: relative; }\n\n.poster-wrap-part {\n  padding: 0;\n  width: 38%;\n  margin-left: -15px; }\n\n.poster-part {\n  width: 100%;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  cursor: pointer;\n  margin-left: 30px; }\n\n.movie-card-year-part {\n  margin: 5px 0; }\n\n.movie-card-title-part {\n  font-size: 20px;\n  text-align: left;\n  margin-top: -50px;\n  line-height: 26px;\n  color: #fff; }\n\n.movie-card-content-part {\n  display: flex;\n  color: #545457;\n  flex-direction: column;\n  padding: 15px;\n  text-align: center;\n  width: 45%; }\n\n.movie-card-desc-part {\n  overflow: hidden;\n  font-size: 13px;\n  line-height: 22px;\n  height: 90px; }\n\n.movie-card-rate-part {\n  font-family: 'Josefin Sans', sans-serif;\n  position: absolute;\n  top: 73%;\n  letter-spacing: 6px;\n  left: 35%;\n  color: #fff;\n  font-weight: bold;\n  font-size: 58px;\n  text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.05), 0 0 0.2em rgba(0, 0, 0, 0.05), 0 0.3em 0.2em rgba(0, 0, 0, 0.05); }\n\n.movie-card-btn-part {\n  cursor: pointer;\n  z-index: 5;\n  width: 120px;\n  height: 35px;\n  background: none;\n  border: 2px solid #ff0707;\n  color: #ff0707;\n  position: absolute;\n  font-size: 14px;\n  top: 78%;\n  left: 75%; }\n\n.movie-card-full {\n  width: 140px;\n  margin: 40px;\n  height: 260px;\n  display: flex;\n  transition: 3s;\n  position: relative;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  padding: 25px 10px 5px 10px;\n  flex-direction: column;\n  justify-content: flex-end;\n  position: relative; }\n  .movie-card-full :hover .poster-full {\n    transform: scale(1.7); }\n\n.poster-wrap-full {\n  padding: 0;\n  width: 100%;\n  left: -40px;\n  top: -35px;\n  cursor: pointer;\n  position: absolute;\n  overflow: hidden; }\n  .poster-wrap-full:hover .movie-card-btn-full {\n    top: 45%; }\n  .poster-wrap-full:hover:after {\n    clip-path: circle(120% at 50% 50%); }\n  .poster-wrap-full:hover:before {\n    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 90%); }\n  .poster-wrap-full:after {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    content: '';\n    display: block;\n    z-index: 3;\n    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);\n    clip-path: circle(0% at 50% 50%);\n    transition: .5s; }\n\n.poster-full {\n  width: 100%;\n  transition: .8s;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2); }\n\n.movie-card-title-full {\n  color: #fff;\n  text-align: center;\n  box-shadow: 0 10px 90px rgba(0, 0, 0, 0.16), 0 90px 90px rgba(0, 0, 0, 0.03);\n  font-size: 14px;\n  z-index: 9;\n  top: 185px;\n  left: -10px;\n  width: 170px;\n  border-top: 2px solid #26252d;\n  height: 20px;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  padding: 10px;\n  background: #1e1d23;\n  position: absolute; }\n\n.movie-card-year-full {\n  display: none; }\n\n.movie-card-content-full {\n  display: flex;\n  justify-content: center; }\n\n.movie-card-desc-full {\n  text-align: center;\n  height: 40px;\n  line-height: 20px;\n  font-weight: 600;\n  margin: 5px 0;\n  font-size: 13px;\n  overflow: hidden;\n  color: #545457; }\n\n.movie-card-rate-full {\n  background: #1e1d23;\n  font-family: 'Raleway', sans-serif;\n  width: 50px;\n  height: 50px;\n  text-align: center;\n  line-height: 50px;\n  position: absolute;\n  top: -60px;\n  left: -60px;\n  border-top: 2px solid #26252d;\n  color: #fff;\n  font-weight: bold;\n  font-size: 24px;\n  z-index: 5;\n  text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.05), 0 0 0.2em rgba(0, 0, 0, 0.05), 0 0.3em 0.2em rgba(0, 0, 0, 0.05); }\n\n.movie-card-btn-full {\n  transition: .4s;\n  position: absolute;\n  top: 120%;\n  left: 50%;\n  margin-left: -60px;\n  cursor: pointer;\n  z-index: 5;\n  width: 120px;\n  height: 35px;\n  background: #ff0707;\n  border: none;\n  color: #fff;\n  font-size: 14px; }\n\n.movie-card-modal {\n  height: 100%;\n  width: 750px;\n  position: relative;\n  display: flex; }\n\n.poster-wrap-modal {\n  height: 100%;\n  margin-top: -70px;\n  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03); }\n\n.poster-modal {\n  height: 130%; }\n\n.movie-card-title-modal {\n  font-size: 28px;\n  margin-bottom: 20px; }\n\n.movie-card-year-modal {\n  margin-bottom: 20px; }\n\n.movie-card-desc-modal {\n  font-size: 14px;\n  font-weight: normal;\n  max-height: 125px;\n  overflow: hidden;\n  line-height: 26px; }\n\n.movie-card-content-modal {\n  display: flex;\n  flex-direction: column;\n  padding: 55px; }\n\n.movie-card-rate-modal {\n  background: #ff0707;\n  font-family: 'Josefin Sans', sans-serif;\n  font-weight: bold;\n  color: #fff;\n  padding: 10px;\n  width: 70px;\n  text-align: center;\n  line-height: 70px;\n  height: 70px;\n  font-size: 46px;\n  position: absolute;\n  right: -40px;\n  bottom: -40px; }\n\n.modal-btn {\n  min-height: 40px; }\n\n.poster-wrap-grid {\n  padding: 0; }\n\n.poster-grid {\n  width: 100%; }\n\n.movie-card-title-grid {\n  color: #fff;\n  font-size: 18px;\n  margin-bottom: 10px; }\n\n.movie-card-year-grid {\n  display: none; }\n\n.movie-card-content-grid {\n  display: flex;\n  flex-direction: column;\n  font-size: 13px;\n  font-weight: 600;\n  text-align: center;\n  padding: 20px;\n  overflow: hidden;\n  color: #545457;\n  line-height: 22px; }\n\n.movie-card-btn-grid,\n.movie-card-rate-grid {\n  display: none; }\n", ""]);
+exports.push([module.i, ".movie-card-part {\n  display: flex;\n  width: 640px;\n  height: 280px;\n  margin: 50px 20px;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  flex-wrap: wrap;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  position: relative; }\n\n.poster-wrap-part {\n  padding: 0;\n  width: 38%;\n  margin-left: -15px; }\n\n.poster-part {\n  width: 100%;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  cursor: pointer;\n  margin-left: 30px; }\n\n.movie-card-year-part {\n  margin: 5px 0; }\n\n.movie-card-title-part {\n  font-size: 20px;\n  text-align: left;\n  margin-top: -50px;\n  line-height: 26px;\n  color: #fff; }\n\n.movie-card-content-part {\n  display: flex;\n  color: #545457;\n  flex-direction: column;\n  padding: 15px;\n  text-align: center;\n  width: 45%; }\n\n.movie-card-desc-part {\n  overflow: hidden;\n  font-size: 13px;\n  line-height: 22px;\n  height: 90px; }\n\n.movie-card-rate-part {\n  font-family: 'Josefin Sans', sans-serif;\n  position: absolute;\n  top: 73%;\n  letter-spacing: 6px;\n  left: 35%;\n  color: #fff;\n  font-weight: bold;\n  font-size: 58px;\n  text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.05), 0 0 0.2em rgba(0, 0, 0, 0.05), 0 0.3em 0.2em rgba(0, 0, 0, 0.05); }\n\n.movie-card-btn-part {\n  cursor: pointer;\n  z-index: 5;\n  width: 120px;\n  height: 35px;\n  background: none;\n  border: 2px solid #ff0707;\n  color: #ff0707;\n  position: absolute;\n  font-size: 14px;\n  top: 78%;\n  left: 75%; }\n\n.movie-card-full {\n  width: 140px;\n  margin: 40px;\n  height: 260px;\n  display: flex;\n  transition: 3s;\n  position: relative;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  padding: 25px 10px 5px 10px;\n  flex-direction: column;\n  justify-content: flex-end;\n  position: relative; }\n  .movie-card-full :hover .poster-full {\n    transform: scale(1.7); }\n\n.poster-wrap-full {\n  padding: 0;\n  width: 100%;\n  left: -40px;\n  top: -35px;\n  cursor: pointer;\n  position: absolute;\n  overflow: hidden; }\n  .poster-wrap-full:hover .movie-card-btn-full {\n    top: 45%; }\n  .poster-wrap-full:hover:after {\n    clip-path: circle(120% at 50% 50%); }\n  .poster-wrap-full:hover:before {\n    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 90%); }\n  .poster-wrap-full:after {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    content: '';\n    display: block;\n    z-index: 3;\n    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);\n    clip-path: circle(0% at 50% 50%);\n    transition: .5s; }\n\n.poster-full {\n  width: 100%;\n  transition: .8s;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2); }\n\n.movie-card-title-full {\n  color: #fff;\n  text-align: center;\n  box-shadow: 0 10px 90px rgba(0, 0, 0, 0.16), 0 90px 90px rgba(0, 0, 0, 0.03);\n  font-size: 14px;\n  z-index: 9;\n  top: 185px;\n  left: -10px;\n  width: 170px;\n  border-top: 2px solid #26252d;\n  height: 20px;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  padding: 10px;\n  background: #1e1d23;\n  position: absolute; }\n\n.movie-card-year-full {\n  display: none; }\n\n.movie-card-content-full {\n  display: flex;\n  justify-content: center; }\n\n.movie-card-desc-full {\n  text-align: center;\n  height: 40px;\n  line-height: 20px;\n  font-weight: 600;\n  margin: 5px 0;\n  font-size: 13px;\n  overflow: hidden;\n  color: #545457; }\n\n.movie-card-rate-full {\n  background: #1e1d23;\n  font-family: 'Raleway', sans-serif;\n  width: 50px;\n  height: 50px;\n  text-align: center;\n  line-height: 50px;\n  position: absolute;\n  top: -60px;\n  left: -60px;\n  border-top: 2px solid #26252d;\n  color: #fff;\n  font-weight: bold;\n  font-size: 24px;\n  z-index: 5;\n  text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.05), 0 0 0.2em rgba(0, 0, 0, 0.05), 0 0.3em 0.2em rgba(0, 0, 0, 0.05); }\n\n.movie-card-btn-full {\n  transition: .4s;\n  position: absolute;\n  top: 120%;\n  left: 50%;\n  margin-left: -60px;\n  cursor: pointer;\n  z-index: 5;\n  width: 120px;\n  height: 35px;\n  background: #ff0707;\n  border: none;\n  color: #fff;\n  font-size: 14px; }\n\n.movie-card-modal {\n  height: 100%;\n  width: 850px;\n  position: relative;\n  display: flex; }\n\n.poster-wrap-modal {\n  height: 100%;\n  margin-top: -70px;\n  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.2), 0 100px 100px rgba(0, 0, 0, 0.03); }\n\n.poster-modal {\n  height: 130%; }\n\n.movie-card-title-modal {\n  font-size: 28px;\n  margin-bottom: 20px; }\n\n.movie-card-year-modal {\n  margin-bottom: 20px; }\n\n.movie-card-desc-modal {\n  font-size: 14px;\n  font-weight: normal;\n  max-height: 125px;\n  overflow: hidden;\n  line-height: 26px; }\n\n.movie-card-content-modal {\n  display: flex;\n  flex-direction: column;\n  padding: 55px; }\n\n.movie-card-rate-modal {\n  background: #ff0707;\n  font-family: 'Josefin Sans', sans-serif;\n  font-weight: bold;\n  color: #fff;\n  padding: 10px;\n  width: 70px;\n  text-align: center;\n  line-height: 70px;\n  height: 70px;\n  font-size: 46px;\n  position: absolute;\n  right: -40px;\n  bottom: -40px; }\n\n.modal-btn {\n  min-height: 40px; }\n\n.poster-wrap-grid {\n  padding: 0; }\n\n.poster-grid {\n  width: 100%; }\n\n.movie-card-title-grid {\n  color: #fff;\n  font-size: 18px;\n  margin-bottom: 10px; }\n\n.movie-card-year-grid {\n  display: none; }\n\n.movie-card-desc-grid {\n  max-height: 280px;\n  overflow: hidden; }\n\n.movie-card-content-grid {\n  display: flex;\n  flex-direction: column;\n  font-size: 13px;\n  font-weight: 600;\n  text-align: center;\n  padding: 20px;\n  overflow: hidden;\n  color: #545457;\n  line-height: 22px; }\n\n.movie-card-btn-grid,\n.movie-card-rate-grid {\n  display: none; }\n", ""]);
 
 // exports
 
@@ -1548,7 +1554,6 @@ var BestMovies = function () {
                 classList: ["pagination-btn", "pagination-next"]
             });
             this.pagination = [prevBtn.create(), nextBtn.create()];
-            console.log(this.pagination);
             var pagintaionWrapper = _Helpers.createElement.apply(undefined, [{
                 tag: "div",
                 classList: ["pagintaion-wrap"]
@@ -2227,6 +2232,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 var Genres = function () {
   function Genres(container) {
     _classCallCheck(this, Genres);
@@ -2271,7 +2280,8 @@ var Genres = function () {
 
             var genreItem = (0, _Helpers.createElement)({
               tag: "li",
-              classList: ["sidebar-list-item"]
+              classList: ["sidebar-list-item"],
+              "data-id": item.id
             });
             genreItem.innerHTML = item.name;
             genreItem.addEventListener("click", _this.handleGenresListClick.bind(_this));
@@ -2294,18 +2304,20 @@ var Genres = function () {
       }).catch(function (e) {
         console.log(e);
       });
+      this.loadMovies();
     }
   }, {
     key: "loadMovies",
     value: function loadMovies() {
       var _this2 = this;
 
-      var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "&with_genres=28";
+      var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "&with_genres=27";
 
       this.genresGrid.innerHTML = "";
       var movieHelper = new _MoviesHelper2.default();
       var movieItem = null;
       var gridItem = null;
+      var randomClassName = null;
       movieHelper.getData(movieHelper.getUrl() + "discover/movie" + movieHelper.getApiKey() + url).then(function (data) {
         var _iteratorNormalCompletion2 = true;
         var _didIteratorError2 = false;
@@ -2315,9 +2327,16 @@ var Genres = function () {
           for (var _iterator2 = data.results[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
             var movie = _step2.value;
 
+            if (getRandomInt(1, data.results.length) % 2 === 0) {
+              randomClassName = "type1";
+            } else if (getRandomInt(1, 30) % 3 !== 0) {
+              randomClassName = "type2";
+            } else {
+              randomClassName = "type3";
+            }
             gridItem = (0, _Helpers.createElement)({
               tag: "div",
-              classList: ["grid-item"]
+              classList: ["grid-item", randomClassName]
             });
             movieItem = new _MovieCard2.default(_this2.genresGrid, movie);
             _this2.genresGrid.appendChild(gridItem);
@@ -2345,8 +2364,9 @@ var Genres = function () {
   }, {
     key: "handleGenresListClick",
     value: function handleGenresListClick(event) {
-      this.loadMovies();
-      console.log(event.target);
+      var genreId = event.target.getAttribute("data-id");
+      this.genresGrid.innerHTML = "";
+      this.loadMovies("&with_genres=" + genreId);
     }
   }]);
 
@@ -2442,7 +2462,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".sidebar-list-wrap {\n  background: #1e1d23; }\n\n.sidebar-list {\n  width: 250px;\n  list-style-type: none;\n  background: #1e1d23;\n  border-bottom: 1px solid #19181d;\n  border-top: 2px solid #2c2b34;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2); }\n\n.sidebar-list-item {\n  height: 40px;\n  font-size: 14px;\n  line-height: 40px;\n  color: #fff;\n  cursor: pointer;\n  padding-left: 25px; }\n  .sidebar-list-item:hover {\n    background: #232229; }\n", ""]);
+exports.push([module.i, ".sidebar-list-wrap {\n  background: #1e1d23; }\n\n.sidebar-list {\n  width: 250px;\n  list-style-type: none;\n  background: #1e1d23;\n  border-bottom: 1px solid #19181d;\n  border-top: 2px solid #2c2b34;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2);\n  margin-right: 25px; }\n\n.sidebar-list-item {\n  height: 40px;\n  font-size: 14px;\n  line-height: 40px;\n  color: #fff;\n  cursor: pointer;\n  padding-left: 25px; }\n  .sidebar-list-item:hover {\n    background: #232229; }\n", ""]);
 
 // exports
 
@@ -2487,7 +2507,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".genres-wrap {\n  width: 100%;\n  padding: 25px;\n  display: flex;\n  flex-wrap: wrap; }\n\n.genres-grid {\n  display: grid;\n  width: 85%;\n  grid-gap: 20px;\n  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\n  grid-auto-rows: 370px;\n  grid-auto-flow: row dense; }\n\n.grid-item {\n  overflow: hidden;\n  background: #1e1d23;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2); }\n\n.grid-item:nth-child(3n) {\n  grid-row-end: span 3; }\n\n.grid-item:nth-child(4n) {\n  grid-row-end: span 2; }\n", ""]);
+exports.push([module.i, ".genres-wrap {\n  width: 100%;\n  padding: 25px;\n  display: flex;\n  flex-wrap: wrap; }\n\n.genres-grid {\n  width: 85%;\n  grid-gap: 20px;\n  display: grid;\n  grid-template-columns: repeat(5, 1fr) 1.2fr 1.2fr 1fr;\n  grid-template-rows: 11vw repeat(5, 13vw) 11vw 6.5vw 6.5vw; }\n\n.grid-item {\n  overflow: hidden;\n  background: #1e1d23;\n  background: #18171c;\n  border-top: 2px solid #26252d;\n  box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.2); }\n\n.grid-item.type1 {\n  grid-column: span 2; }\n  .grid-item.type1 .movie-card-grid {\n    display: flex;\n    justify-content: space-around; }\n  .grid-item.type1 .movie-card-content-grid {\n    width: 49%; }\n  .grid-item.type1 .movie-card-title-grid {\n    overflow: hidden;\n    text-overflow: ellipsis; }\n  .grid-item.type1 .movie-card-desc-grid {\n    max-height: 94px;\n    overflow: hidden; }\n  .grid-item.type1 .poster-wrap-grid {\n    width: 50%; }\n\n.grid-item.type2 {\n  grid-column: span 2;\n  border-top: none;\n  grid-row: span 3; }\n  .grid-item.type2 .movie-card-content-grid {\n    max-height: 120px;\n    overflow: hidden; }\n\n.grid-item.type3 {\n  grid-row: span 4;\n  border-top: none;\n  border-right: none; }\n", ""]);
 
 // exports
 
@@ -2832,6 +2852,254 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Jos
 
 // module
 exports.push([module.i, "* {\n  padding: 0;\n  margin: 0; }\n\nbody {\n  background: #242329;\n  font-family: 'Open Sans', sans-serif;\n  height: 100vh;\n  font-weight: 600; }\n\n.spinner {\n  display: none;\n  position: fixed;\n  background: #2a2931;\n  border-radius: 50%;\n  left: 50%;\n  top: 50%;\n  z-index: 99999;\n  margin-top: -50px;\n  margin-left: -50px;\n  width: 100px;\n  height: 100px;\n  animation: spin 2s linear infinite; }\n  .spinner:after, .spinner:before {\n    content: '';\n    display: block;\n    background: #ff0707;\n    border-radius: 50%;\n    width: 15px;\n    height: 15px;\n    top: -8px;\n    left: 50%;\n    margin-left: -15px;\n    position: absolute; }\n  .spinner:after {\n    top: auto;\n    bottom: -10px;\n    animation: bounce .5s linear infinite; }\n\n@keyframes bounce {\n  0% {\n    transform: translateY(0px); }\n  50% {\n    transform: translateY(20px); }\n  100% {\n    transform: translateY(0px); } }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Helpers = __webpack_require__(0);
+
+var _MoviesHelper = __webpack_require__(3);
+
+var _MoviesHelper2 = _interopRequireDefault(_MoviesHelper);
+
+var _ActorCard = __webpack_require__(50);
+
+var _ActorCard2 = _interopRequireDefault(_ActorCard);
+
+var _Button = __webpack_require__(5);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+__webpack_require__(48);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var BestActors = function () {
+  function BestActors(container) {
+    _classCallCheck(this, BestActors);
+
+    this.container = container;
+    this.actors = [];
+    this.bestActorsUrl = "person/popular";
+    this.bestActorsWrap = null;
+    this.bestActorsPhotosContainer = null;
+    this.bestActorsNextBlock = null;
+    this.currentPage = 1;
+    this.nextButton = null;
+  }
+
+  _createClass(BestActors, [{
+    key: "create",
+    value: function create() {
+      this.bestActorsPhotosContainer = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["best-actors-photos-wrap"]
+      });
+      this.nextButton = new _Button2.default({
+        title: "next",
+        classList: ["next-button"]
+      }).create();
+      this.bestActorsNextBlock = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["best-actors-next-block"]
+      }, this.nextButton);
+
+      this.bestActorsWrap = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["best-actors-wrap"]
+      }, this.bestActorsPhotosContainer, this.bestActorsNextBlock);
+      this.container.appendChild(this.bestActorsWrap);
+    }
+  }, {
+    key: "loadingActors",
+    value: function loadingActors() {
+      var _this = this;
+
+      var movieHelper = new _MoviesHelper2.default();
+      var actorItem = null;
+      movieHelper.getData(movieHelper.getUrl() + this.bestActorsUrl + movieHelper.getApiKey()).then(function (data) {
+        data.results.forEach(function (actor, index) {
+          if (index <= 5) {
+            actorItem = new _ActorCard2.default(_this.bestActorsPhotosContainer, actor);
+            actorItem.create();
+            console.log(actor);
+            _this.actors.push(actorItem);
+          }
+        });
+      }).catch(function (e) {
+        console.log(e);
+      });
+    }
+  }]);
+
+  return BestActors;
+}();
+
+exports.default = BestActors;
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(49);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./BestActors.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./BestActors.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".best-actors-wrap {\n  margin-top: 50px;\n  width: 90%;\n  display: flex;\n  flex-wrap: wrap; }\n\n.best-actors-photos-wrap {\n  width: 70%;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around; }\n\n.best-actors-next-block {\n  width: 15%;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n.next-button {\n  cursor: pointer;\n  width: 120px;\n  position: relative;\n  height: 40px;\n  background: none;\n  line-height: 40px;\n  color: #ff0707;\n  text-transform: uppercase;\n  border: 2px solid #ff0707;\n  outline: none; }\n  .next-button:after {\n    position: absolute;\n    right: -20px;\n    top: 0;\n    content: '';\n    width: 40px;\n    height: 40px;\n    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaWQ9ItCh0LvQvtC5XzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDEzOSAxMzk7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMzkgMTM5IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjY7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fQo8L3N0eWxlPjxsaW5lIGNsYXNzPSJzdDAiIGlkPSJYTUxJRF8zXyIgeDE9IjI2IiB4Mj0iMTEyLjIiIHkxPSI2OS41IiB5Mj0iNjkuNSIvPjxsaW5lIGNsYXNzPSJzdDAiIGlkPSJYTUxJRF84XyIgeDE9Ijk0LjIiIHgyPSIxMTEuMiIgeTE9IjgyLjIiIHkyPSI2OS41Ii8+PGxpbmUgY2xhc3M9InN0MCIgaWQ9IlhNTElEXzIxXyIgeDE9IjExMS4yIiB4Mj0iOTQuMiIgeTE9IjY5LjUiIHkyPSI1Ni44Ii8+PHJlY3QgaGVpZ2h0PSI0LjgiIGlkPSJYTUxJRF8yM18iIHdpZHRoPSIxLjQiIHg9IjExMS42IiB5PSI2Ny4xIi8+PC9zdmc+);\n    background-repeat: no-repeat; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Helpers = __webpack_require__(0);
+
+__webpack_require__(51);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ActorCard = function () {
+  function ActorCard(container, props) {
+    _classCallCheck(this, ActorCard);
+
+    this.container = container;
+    this.name = props.name;
+    this.id = props.id;
+    this.photoPath = "https://image.tmdb.org/t/p/w500" + props.profile_path;
+    this.photo = null;
+  }
+
+  _createClass(ActorCard, [{
+    key: "create",
+    value: function create() {
+      var actorPhoto = (0, _Helpers.createElement)({
+        tag: "img",
+        classList: ["actor-photo"]
+      });
+      actorPhoto.src = this.photoPath;
+      actorPhoto.alt = this.name;
+      var photoWrap = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["actor-photo-wrap"]
+      }, actorPhoto);
+      var actorName = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["actor-name"]
+      });
+      actorName.innerHTML = this.name;
+      var cardWrap = (0, _Helpers.createElement)({
+        tag: "div",
+        classList: ["actor-card-wrap"]
+      }, photoWrap, actorName);
+      this.container.appendChild(cardWrap);
+      return cardWrap;
+    }
+  }]);
+
+  return ActorCard;
+}();
+
+exports.default = ActorCard;
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(52);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./ActorCard.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./ActorCard.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".actor-card-wrap {\n  width: 15%; }\n\n.actor-photo-wrap {\n  height: 150px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 150px;\n  overflow: hidden; }\n\n.actor-photo {\n  width: 100%; }\n\n.actor-name {\n  color: #fff;\n  padding: 10px 0; }\n", ""]);
 
 // exports
 

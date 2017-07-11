@@ -228,7 +228,7 @@ $red: #ff0707;
 
 .movie-card-modal {
   height: 100%;
-  width: 750px;
+  width: 850px;
   position: relative;
   display: flex;
 }
@@ -281,7 +281,6 @@ $red: #ff0707;
   right: -40px;
   bottom: -40px;
 }
-
 .modal-btn {
   min-height: 40px;
 }
@@ -298,6 +297,10 @@ $red: #ff0707;
 }
 .movie-card-year-grid {
   display: none;
+}
+.movie-card-desc-grid {
+  max-height: 280px;
+  overflow: hidden;
 }
 .movie-card-content-grid {
   display: flex;

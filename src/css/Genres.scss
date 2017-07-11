@@ -8,12 +8,11 @@ $movie-card-background: #18171c;
 }
 
 .genres-grid {
-  display: grid;
   width: 85%;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  grid-auto-rows: 370px;
-  grid-auto-flow: row dense;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr) 1.2fr 1.2fr 1fr;
+  grid-template-rows: 11vw repeat(5, 13vw) 11vw 6.5vw 6.5vw;
 }
 
 .grid-item {
@@ -23,10 +22,39 @@ $movie-card-background: #18171c;
   border-top: 2px solid lighten($movie-card-background, 6%);
   box-shadow: 0 36px 28px -20px rgba(#000, 0.20);
 }
-.grid-item:nth-child(3n) {
-  grid-row-end: span 3;
-}
 
-.grid-item:nth-child(4n) {
-  grid-row-end: span 2;
+.grid-item.type1 {
+  grid-column: span 2;
+  .movie-card-grid {
+    display: flex;
+    justify-content: space-around;
+  }
+  .movie-card-content-grid {
+    width: 49%;
+  }
+  .movie-card-title-grid {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .movie-card-desc-grid {
+    max-height: 94px;
+    overflow: hidden;
+  }
+  .poster-wrap-grid {
+    width: 50%;
+  }
+}
+.grid-item.type2 {
+  grid-column: span 2;
+  border-top: none;
+  grid-row: span 3;
+  .movie-card-content-grid {
+    max-height: 120px;
+    overflow: hidden;
+  }
+}
+.grid-item.type3 {
+  grid-row: span 4;
+  border-top: none;
+  border-right: none;
 }

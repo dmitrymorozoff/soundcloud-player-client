@@ -40,7 +40,6 @@ export default class BestMovies {
             classList: ["pagination-btn", "pagination-next"]
         });
         this.pagination = [prevBtn.create(), nextBtn.create()];
-        console.log(this.pagination);
         const pagintaionWrapper = createElement({
                 tag: "div",
                 classList: ["pagintaion-wrap"]

@@ -1,0 +1,19 @@
+.actor-card-wrap {
+  width: 15%;
+}
+
+.actor-photo-wrap {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  overflow: hidden;
+}
+.actor-photo {
+  width: 100%;
+}
+.actor-name {
+  color: #fff;
+  padding: 10px 0;
+}
