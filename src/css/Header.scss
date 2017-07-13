@@ -3,57 +3,57 @@ $header-title-color: #fff;
 $header-border-color: lighten($header-title-color, 80%);
 $green-color: #3ab059;
 .header {
-    width: 100%;
-    height: 80px;
-    background: $header-background-color;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+  width: 100%;
+  height: 80px;
+  background: $header-background-color;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .header-logo-title {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2px;
-    height: 100%;
-    color: $header-title-color;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  height: 100%;
+  color: $header-title-color;
 }
 
 .header-logo-wrap {
-    display: flex;
-    align-items: center;
-    padding-left: 45px;
-    height: 100%;
-    width: 5%;
+  display: flex;
+  align-items: center;
+  padding-left: 45px;
+  height: 100%;
+  width: 5%;
 }
 
 .header-logo-title {
-    width: 15%;
+  width: 15%;
 }
 
 .logo {
-    height: 65%;
+  height: 65%;
 }
 
 .search {
-    margin-left: 80px;
-    width: 60%;
-    display: inline-block;
-    height: 20px;
-    font-size: 20px;
-    border-radius: 2px;
-    background: lighten(#1e1d23, 5%);
-    padding: 10px;
-    outline: none;
-    border: none;
-    color: $header-title-color;
-    transition: 0.3s linear;
-    border-bottom: 1px solid darken(#1e1d23, 2%);
+  margin-left: 80px;
+  width: 60%;
+  display: inline-block;
+  height: 20px;
+  font-size: 20px;
+  border-radius: 2px;
+  background: lighten(#1e1d23, 5%);
+  padding: 10px;
+  outline: none;
+  border: none;
+  color: $header-title-color;
+  transition: 0.3s linear;
+  border-bottom: 1px solid darken(#1e1d23, 2%);
 }
 
 .search:focus {
-    background: #f3f3f3;
+  background: #f3f3f3;
 }

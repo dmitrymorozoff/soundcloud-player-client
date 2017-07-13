@@ -290,6 +290,9 @@ $red: #ff0707;
 .poster-grid {
   width: 100%;
 }
+.movie-card-title {
+  height: auto;
+}
 .movie-card-title-grid {
   color: #fff;
   font-size: 18px;
@@ -299,7 +302,7 @@ $red: #ff0707;
   display: none;
 }
 .movie-card-desc-grid {
-  max-height: 280px;
+  max-height: 60px;
   overflow: hidden;
 }
 .movie-card-content-grid {
@@ -309,12 +312,24 @@ $red: #ff0707;
   font-weight: 600;
   text-align: center;
   padding: 20px;
-
   overflow: hidden;
   color: $text-color;
   line-height: 22px;
 }
-.movie-card-btn-grid,
-.movie-card-rate-grid {
+.movie-card-btn-grid {
   display: none;
+}
+.grid-item {
+  position: relative;
+}
+.movie-card-rate-grid {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  background: $red;
+  position: absolute;
+  right: -15px;
+  bottom: -15px;
 }

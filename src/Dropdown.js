@@ -9,6 +9,7 @@ export default class Dropdown {
     this.dropDownList = null;
     this.dropDownBtn = null;
     this.activeItem = "";
+    this.linkItems = [];
   }
   create() {
     const dropdownWrap = createElement({
@@ -40,13 +41,11 @@ export default class Dropdown {
     for (let i = 0; i < this.links.length; i++) {
       let dropdownLinkItem = createElement({
         tag: "li",
-        classList: ["dropdown-list-link"]
+        classList: ["dropdown-list-link"],
+        "data-type": this.links[i].replace(" ", "").toLowerCase()
       });
       dropdownLinkItem.innerHTML = this.links[i];
-      dropdownLinkItem.addEventListener(
-        "click",
-        this.handleListItemcClick.bind(this)
-      );
+      this.linkItems.push(dropdownLinkItem);
       this.dropDownList.appendChild(dropdownLinkItem);
     }
     dropdownWrap.appendChild(this.dropDownBtn);
@@ -54,7 +53,6 @@ export default class Dropdown {
     return dropdownWrap;
   }
   hasActive() {
-    console.log(this.dropDownList.classList.contains("active"));
     return this.dropDownList.classList.contains("active");
   }
   show() {
@@ -63,10 +61,5 @@ export default class Dropdown {
   hide() {
     this.dropDownList.classList.remove("active");
     return this.activeItem;
-  }
-  handleListItemcClick() {
-    this.hide();
-    this.activeItem = event.target.innerHTML;
-    this.dropDownBtn.innerHTML = event.target.innerHTML;
   }
 }

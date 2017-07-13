@@ -9,6 +9,8 @@ export default class MovieCard {
     this.id = props.id;
     this.title = props.original_title;
     this.rate = props.vote_average;
+    this.voteCount = props.vote_count;
+    this.popularity = props.popularity;
     this.year = props.release_date;
     this.desc = props.overview;
     this.posterPath = "https://image.tmdb.org/t/p/w500" + props.poster_path;

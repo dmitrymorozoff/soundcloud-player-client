@@ -1,6 +1,7 @@
 import Layout from "./Layout";
 import Navigation from "./Navigation";
 import Header from "./Header";
+
 const tabs = [{
         title: "Discover",
         link: "discoverx"
@@ -51,6 +52,5 @@ export default class Player {
         let newActiveId = parseInt(newActiveTab.getAttribute("data-id"), 10) - 1;
         this.layout.toggleLayer(newActiveId);
         this.navigation.toggleActiveTab(newActiveId);
-        console.log(newActiveId);
     }
 }

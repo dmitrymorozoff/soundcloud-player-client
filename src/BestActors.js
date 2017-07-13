@@ -45,16 +45,16 @@ export default class BestActors {
   loadingActors() {
     let movieHelper = new MovieHelper();
     let actorItem = null;
+    const maxCountActorsOnPage = 5;
     movieHelper
       .getData(
         movieHelper.getUrl() + this.bestActorsUrl + movieHelper.getApiKey()
       )
       .then(data => {
         data.results.forEach((actor, index) => {
-          if (index <= 5) {
+          if (index <= maxCountActorsOnPage) {
             actorItem = new ActorCard(this.bestActorsPhotosContainer, actor);
             actorItem.create();
-            console.log(actor);
             this.actors.push(actorItem);
           }
         });

@@ -79,7 +79,6 @@ export default class BestMovies {
                 for (let movie of data.results) {
                     movieItem = new MovieCard(this.moviesWrap, movie);
                     movieItem.create("full");
-                    console.log(movieItem.buyTicketButton);
                     movieItem.poster.addEventListener(
                         "click",
                         this.handleClickOnMovieCard.bind(this)
@@ -144,8 +143,6 @@ export default class BestMovies {
         this.modal.modal.innerHTML = "";
         this.modal.appendInnerStructure(
             function() {
-                console.log(data);
-                console.log(halls.hallOne);
                 let ticketReservation = new TicketReservation({
                     countPlace: 120,
                     data: data,

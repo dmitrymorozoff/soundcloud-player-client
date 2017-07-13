@@ -1,26 +1,26 @@
 const path = require("path");
 const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const htmlWebpackPlugin = require("html-webpack-plugin");
+
+const paths = {
+  source: path.join(__dirname, "src"),
+  build: path.join(__dirname, "public")
+};
 
 module.exports = {
-  context: path.resolve(__dirname, "./src"),
-  entry: {
-    app: "./index.js"
-  },
+  entry: paths.source + "/index.js",
   output: {
-    path: path.resolve(__dirname, "./public"),
-    filename: "[name].bundle.js",
-    publicPath: "./public"
+    path: paths.build,
+    filename: "[name].bundle.js"
   },
-  watch: true,
   devServer: {
-    contentBase: path.resolve(__dirname, "./public"),
-    hot: true
+    contentBase: paths.build,
+    stats: "errors-only"
   },
   module: {
     rules: [
       {
-        test: /\.(sass|scss)$/,
+        test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
@@ -36,10 +36,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin({
-      filename: "app.css",
-      allChunks: true,
-      disable: process.env.NODE_ENV !== "production"
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
     })
   ]
 };
