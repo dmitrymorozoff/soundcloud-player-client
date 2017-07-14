@@ -3,6 +3,7 @@ import TopMovies from "./TopMovies";
 import BestMovies from "./BestMovies";
 import BestActors from "./BestActors";
 import Genres from "./Genres";
+import Bookmarks from "./Bookmarks";
 import "./css/Layout.scss";
 
 export default class Layout {
@@ -38,6 +39,8 @@ export default class Layout {
     const bestMovies = new BestMovies(this.layers[0]);
     bestMovies.create();
     bestMovies.loadingMovies();
+    const bookmarks = new Bookmarks(this.layers[3]);
+    bestMovies.addObserver(bookmarks);
     const genres = new Genres(this.layers[1]);
     genres.create();
     genres.loadGenres();

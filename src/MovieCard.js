@@ -7,6 +7,7 @@ export default class MovieCard {
     this.container = container;
     this.card = null;
     this.id = props.id;
+    this.props = props;
     this.title = props.original_title;
     this.rate = props.vote_average;
     this.voteCount = props.vote_count;
@@ -16,6 +17,7 @@ export default class MovieCard {
     this.posterPath = "https://image.tmdb.org/t/p/w500" + props.poster_path;
     this.poster = null;
     this.buyTicketButton = null;
+    this.btnAddToBookmark = null;
   }
   create(cardCategory = "part") {
     let postfix = cardCategory;
@@ -57,12 +59,13 @@ export default class MovieCard {
       cardTitle,
       cardYear
     );
-    const btnAddToBookmars = new Button({
+    this.btnAddToBookmark = new Button({
       title: "Add Bookmark",
       classList: ["movie-card-btn-" + postfix]
-    });
+    }).create();
+
     if (cardCategory !== "modal") {
-      this.poster.appendChild(btnAddToBookmars.create());
+      this.poster.appendChild(this.btnAddToBookmark);
     }
     const cardDesc = createElement({
       tag: "div",

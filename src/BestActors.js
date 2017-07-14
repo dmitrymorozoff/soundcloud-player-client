@@ -24,6 +24,7 @@ export default class BestActors {
       title: "next",
       classList: ["next-button"]
     }).create();
+    this.nextButton.addEventListener("click", this.hand);
     this.bestActorsNextBlock = createElement(
       {
         tag: "div",
@@ -63,4 +64,5 @@ export default class BestActors {
         console.log(e);
       });
   }
+  handleNextBtnClick() {}
 }
